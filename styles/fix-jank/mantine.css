@@ -1,0 +1,19 @@
+/* fix mantine stuff */
+
+.mantine-Text-root {
+  font-weight: 500;
+  font-size: unset;
+}
+
+.mantine-Timeline-itemBullet {
+  background: var(--bg);
+}
+
+button {
+  background: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
