@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Ri4kFill, RiHqFill, RiLinksLine } from "react-icons/ri"
-import { Navbar } from '../components';
+import { NavbarList } from '../components';
 
-const meta: Meta<typeof Navbar> = {
-  title: 'VC Assist/Navbar',
-  component: Navbar,
+const meta: Meta<typeof NavbarList> = {
+  title: 'VC Assist/NavbarList',
+  component: NavbarList,
   parameters: {
     layout: 'fullscreen',
   },

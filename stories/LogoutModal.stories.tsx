@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LogoutModal } from '../blocks';
+import { LogoutModal } from '../components';
 
 const meta: Meta<typeof LogoutModal> = {
   title: 'VC Assist/LogoutModal',

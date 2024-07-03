@@ -1,6 +1,6 @@
 import { Button, MantineColor, Title } from "@mantine/core";
 import { MdClose } from "react-icons/md";
-import Panel from "../Panel";
+import  Panel  from "../panel/Panel";
 
 export default function Prompt(props: {
   loading?: boolean;

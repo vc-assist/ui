@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 import { HiUser } from "react-icons/hi";
-import Panel from "./Panel";
+import Panel from "../panel/Panel";
 import { Title } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
 
@@ -49,7 +49,7 @@ export type NavbarRoute = {
   route: string;
 };
 
-export default function Navbar(props: {
+export default function NavbarList(props: {
   route: string;
   routes: NavbarRoute[];
   layout: "mobile" | "desktop";

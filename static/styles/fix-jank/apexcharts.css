@@ -1,0 +1,18 @@
+.apexcharts-tooltip {
+  border-color: var(--bg-dimmed) !important;
+  background: var(--bg) !important;
+}
+
+.apexcharts-tooltip-title, .apexcharts-menu, .apexcharts-xaxistooltip {
+  border-color: var(--bg-dimmed) !important;
+  color: var(--primary) !important;
+  background: var(--bg) !important;
+}
+
+.apexcharts-tooltip-series-group {
+  color: var(--primary);
+}
+
+.apexcharts-gridline {
+  stroke: var(--bg-dimmed);
+}

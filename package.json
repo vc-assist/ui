@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
+    "lint:tsc": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -18,10 +19,13 @@
     "@storybook/react": "^8.1.11",
     "@storybook/react-vite": "^8.1.11",
     "@storybook/test": "^8.1.11",
+    "@types/chroma-js": "^2.4.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/sha1": "^1.1.5",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
+    "postcss-import": "^16.1.0",
     "postcss-preset-mantine": "^1.15.0",
     "postcss-simple-vars": "^7.0.1",
     "storybook": "^8.1.11",
@@ -40,12 +44,17 @@
     "@opentelemetry/sdk-trace-base": "^1.25.1",
     "@opentelemetry/sdk-trace-web": "^1.25.1",
     "@opentelemetry/semantic-conventions": "^1.25.1",
+    "@preact/signals-react": "^2.0.2",
+    "chroma-js": "^2.4.2",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.2.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.13",
     "react-helmet-async": "^2.0.5",
     "react-icons": "^5.2.1",
-    "tailwind-merge": "^2.3.0"
+    "sha1": "^1.1.1",
+    "tailwind-merge": "^2.3.0",
+    "zod": "^3.23.8"
   }
 }

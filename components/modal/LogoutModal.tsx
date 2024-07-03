@@ -1,10 +1,11 @@
 import { Text } from "@mantine/core";
 import { MdLogout } from "react-icons/md";
-import { IconButton, Modal, Prompt } from "../components";
 import { useDisclosure } from "@mantine/hooks";
+import { IconButton } from "../buttons";
+import Modal from "./Modal";
+import Prompt from "./Prompt";
 
 export default function LogoutModal(props: {
-  showCloseButton?: boolean
   handleLogout: () => void;
   className?: string;
 }) {
@@ -19,7 +20,7 @@ export default function LogoutModal(props: {
         horizontal
         onClick={open}
       />
-      <Modal opened={opened} showCloseButton={props.showCloseButton}>
+      <Modal opened={opened} closeControls={false} onClose={close}>
         <Prompt
           title="Log out"
           actionText="Log out"
