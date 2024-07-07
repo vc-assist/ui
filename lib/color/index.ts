@@ -15,14 +15,12 @@ export namespace Color {
     lightGreen: "#53b486",
   };
 
-  export const CUSTOM_LIST = [
+  export const DAY_COLORS_LIST = [
     CUSTOM.red,
     CUSTOM.blue,
-    CUSTOM.purple,
-    CUSTOM.orange,
-    CUSTOM.lightBlue,
-    CUSTOM.lightRed,
     CUSTOM.lightGreen,
+    CUSTOM.orange,
+    CUSTOM.purple,
   ];
 
   /**

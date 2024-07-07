@@ -3,8 +3,7 @@
 ```tsx
 import "@mantine/core/styles.css";
 import "@vcassist/ui/global.css"
-import { Foundation } from "@vcassist/ui/foundation"
-import { SomeComponent } from "@vcassist/ui/components"
+import { Foundation, SomeComponent } from "@vcassist/ui"
 
 const FoundationProvider = Foundation({
    ...
