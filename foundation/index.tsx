@@ -1,10 +1,10 @@
 import { UIProvider } from "./ui"
 import { ErrorBoundary, notifyError } from "./error"
-import { initTelemetry, useSpan, type TelemetryConfig } from "./telemetry"
+import { initTelemetry, useSpan, type TelemetryConfig, FnSpan, createFnSpanner, narrowError } from "./telemetry"
 import { type SafeArea, SafeAreaProvider, useSafeArea } from "./safe-area"
 export * from "./context"
 
-export { notifyError, useSpan, useSafeArea }
+export { notifyError, useSpan, useSafeArea, type FnSpan, createFnSpanner, narrowError }
 
 export function Foundation(options: {
   safeArea: SafeArea
