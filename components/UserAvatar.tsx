@@ -25,7 +25,7 @@ export function useStringToMantineColor(text: string): string {
 }
 
 
-export default function UserAvatar(props: {
+export function UserAvatar(props: {
   name?: string
   email: string
   picture?: string

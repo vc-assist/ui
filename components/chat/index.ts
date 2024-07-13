@@ -1,4 +1,2 @@
-import AIChat from "./AIChat";
-import Chat from "./Chat";
-
-export { AIChat, Chat }
+export * from "./AIChat";
+export * from "./Chat";

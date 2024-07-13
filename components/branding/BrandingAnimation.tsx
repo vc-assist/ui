@@ -140,7 +140,7 @@ function StaticBranding(props: {
   );
 }
 
-export default function LoadingAnimation(props: {
+export function LoadingAnimation(props: {
   onAnimationComplete?: () => void;
 }) {
   const [animFinished, setAnimFinished] = useState(false);

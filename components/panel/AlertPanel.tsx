@@ -14,7 +14,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 import { persistentSignal } from "../../lib/utils";
-import Panel from "./Panel";
+import { Panel } from "./Panel";
 import { useSignals } from "@preact/signals-react/runtime";
 
 export const enum AlertVariant {
@@ -23,7 +23,7 @@ export const enum AlertVariant {
   EXPANDABLE = 2,
 }
 
-export default function AlertPanel(props: {
+export function AlertPanel(props: {
   classNames?: Partial<{
     root: string;
     inner: string;
@@ -77,7 +77,7 @@ export default function AlertPanel(props: {
           : props.children}
       </div>
       {variant === AlertVariant.DISMISSIBLE ||
-      variant === AlertVariant.EXPANDABLE ? (
+        variant === AlertVariant.EXPANDABLE ? (
         <div>
           <UnstyledButton
             className={twMerge(

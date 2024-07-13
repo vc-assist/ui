@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import Chat, { type ChatMessage } from "./Chat";
+import { Chat, type ChatMessage } from "./Chat";
 import { HiSparkles } from "react-icons/hi";
 
-export default function AIChat(props: {
+export function AIChat(props: {
   className?: string;
   aiName: string;
   introduction?: string;

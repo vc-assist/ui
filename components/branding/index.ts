@@ -1,4 +1,2 @@
-import BrandTag from "./BrandTag";
-import BrandingAnimation from "./BrandingAnimation"
-
-export { BrandTag, BrandingAnimation }
+export * from "./BrandTag";
+export * from "./BrandingAnimation"

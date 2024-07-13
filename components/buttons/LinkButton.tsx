@@ -8,7 +8,7 @@ import { twMerge } from "tailwind-merge";
  *
  * It is semantically a button.
  */
-const LinkButton = forwardRef<
+export const LinkButton = forwardRef<
   HTMLButtonElement,
   {
     className?: string;
@@ -33,4 +33,3 @@ const LinkButton = forwardRef<
   );
 });
 
-export default LinkButton;

@@ -1,5 +1,5 @@
 import { Avatar, Button } from "@mantine/core";
-import Panel from "../panel/Panel";
+import { Panel } from "../panel/Panel";
 import { createRef, forwardRef, useEffect, useState } from "react";
 import { HiSparkles } from "react-icons/hi";
 import { MdSend } from "react-icons/md";
@@ -125,7 +125,7 @@ function TypingDisplay(props: {
   );
 }
 
-export default function Chat({
+export function Chat({
   disabled,
   messages,
   send,

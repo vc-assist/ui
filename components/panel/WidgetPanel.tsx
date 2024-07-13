@@ -1,8 +1,8 @@
 import { Title } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
-import Panel from "./Panel";
+import { Panel } from "./Panel";
 
-export default function WidgetPanel(props: {
+export function WidgetPanel(props: {
   title: string;
   titleBarRight?: React.ReactNode;
   info?: string;

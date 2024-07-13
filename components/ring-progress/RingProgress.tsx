@@ -6,7 +6,7 @@ import {
 /**
  * A wrapper around mantine's RingProgress but with centering fixed and a default background color.
  */
-export default function RingProgress(props: RingProgressProps) {
+export function RingProgress(props: RingProgressProps) {
   return (
     <MantineRingProgress
       {...props}

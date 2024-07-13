@@ -2,10 +2,10 @@ import { Text } from "@mantine/core";
 import { MdLogout } from "react-icons/md";
 import { useDisclosure } from "@mantine/hooks";
 import { IconButton } from "../buttons";
-import Modal from "./Modal";
-import Prompt from "./Prompt";
+import { Modal } from "./Modal";
+import { Prompt } from "./Prompt";
 
-export default function LogoutModal(props: {
+export function LogoutModal(props: {
   handleLogout: () => void;
   className?: string;
 }) {

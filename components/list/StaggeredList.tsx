@@ -14,7 +14,7 @@ const itemAnimationVariants: Variants = {
   },
 };
 
-export default function StaggeredList(props: {
+export function StaggeredList(props: {
   title: string;
   children: JSX.Element[];
   expandedByDefault?: boolean;

@@ -1,7 +1,7 @@
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const colorScheme = useComputedColorScheme();
   const { toggleColorScheme } = useMantineColorScheme();
 

@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import ArrowButton from "../buttons/ArrowButton";
-import Panel, { PanelRoot } from "./Panel";
+import {ArrowButton} from "../buttons/ArrowButton";
+import { Panel, PanelRoot } from "./Panel";
 
-export default function DrawerPanel(props: {
+export function DrawerPanel(props: {
   classNames?: Partial<{
     root: string;
     button: string;

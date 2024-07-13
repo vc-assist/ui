@@ -36,7 +36,7 @@ export type PanelProps = {
   children: React.ReactNode;
 };
 
-const Panel: React.ForwardRefExoticComponent<
+export const Panel: React.ForwardRefExoticComponent<
   PanelProps & React.RefAttributes<HTMLDivElement>
 > = forwardRef((props: PanelProps, ref: ForwardedRef<HTMLDivElement>) => {
   const Root: PanelRoot = props.root ?? divRoot;
@@ -58,4 +58,3 @@ const Panel: React.ForwardRefExoticComponent<
 });
 Panel.displayName = "Panel";
 
-export default Panel;

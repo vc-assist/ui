@@ -1,8 +1,8 @@
 import { Button, MantineColor, Title } from "@mantine/core";
 import { MdClose } from "react-icons/md";
-import  Panel  from "../panel/Panel";
+import { Panel } from "../panel/Panel";
 
-export default function Prompt(props: {
+export function Prompt(props: {
   loading?: boolean;
   title: string;
   children: React.ReactNode;

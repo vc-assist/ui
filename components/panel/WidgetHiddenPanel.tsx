@@ -1,9 +1,9 @@
 import { Title } from "@mantine/core";
-import  Panel  from "./Panel";
+import { Panel } from "./Panel";
 import { MdVisibilityOff } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 
-export default function WidgetHiddenPanel(props: {
+export function WidgetHiddenPanel(props: {
   message: string;
   className?: string;
 }) {

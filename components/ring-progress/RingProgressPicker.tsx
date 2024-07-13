@@ -6,7 +6,7 @@ import {
 } from "@mantine/core";
 import { useElementSize } from "@mantine/hooks";
 import { twMerge } from "tailwind-merge";
-import RingProgress from "./RingProgress";
+import { RingProgress } from "./RingProgress";
 
 function AnimatedUnderline(props: {
   children: React.ReactNode;
@@ -41,7 +41,7 @@ export type RingSection = {
 /**
  * All number values should be a value from 0-100.
  */
-export default function RingProgressPicker(props: {
+export function RingProgressPicker(props: {
   className?: string;
   sections: RingSection[];
   value?: RingSection;

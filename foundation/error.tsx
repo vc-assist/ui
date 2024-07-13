@@ -1,7 +1,7 @@
 import { ErrorBoundary as ErrorBoundaryComponent } from "react-error-boundary"
 import { Code, Text, Title } from "@mantine/core";
 import { useState } from "react";
-import Panel from "../components/panel/Panel";
+import { Panel } from "../components/panel/Panel";
 import { notifications } from "@mantine/notifications";
 import { createFnSpanner } from "./telemetry";
 

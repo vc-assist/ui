@@ -2,7 +2,7 @@ import { Popover, Text, ThemeIcon, UnstyledButton } from "@mantine/core";
 import type { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
 
-export default function PopoutChip(props: {
+export function PopoutChip(props: {
   title?: string;
   icon?: IconType;
   className?: string;

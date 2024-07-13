@@ -3,7 +3,7 @@ import { Tooltip, UnstyledButton } from "@mantine/core";
 import { useState } from "react";
 import { MdInfo } from "react-icons/md";
 
-export default function InfoTooltip(props: {
+export function InfoTooltip(props: {
   className?: string;
   message: string;
   children?: React.ReactNode;

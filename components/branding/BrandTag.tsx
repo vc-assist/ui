@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export default function BrandTag(props: { className?: string }) {
+export function BrandTag(props: { className?: string }) {
   return (
     <div
       className={twMerge("flex items-end w-fit h-fit", props.className)}

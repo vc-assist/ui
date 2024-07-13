@@ -5,7 +5,7 @@ import {
 } from "@mantine/core";
 import { twMerge } from "tailwind-merge";
 
-export default function ColorKey<T extends boolean = false>(props: {
+export function ColorKey<T extends boolean = false>(props: {
   classNames?: Partial<{ root: string; label: string }>;
   mantine?: T;
   color: T extends true ? DefaultMantineColor : string;

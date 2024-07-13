@@ -1,6 +1,5 @@
-import IconButton from "./IconButton"
-import LinkButton from "./LinkButton"
-import ArrowButton from "./ArrowButton"
-import ThemeToggleButton from "./ThemeToggleButton"
+export * from "./IconButton"
+export * from "./LinkButton"
+export * from "./ArrowButton"
+export * from "./ThemeToggleButton"
 
-export { IconButton, LinkButton, ArrowButton, ThemeToggleButton }

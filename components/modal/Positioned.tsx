@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { useSafeArea } from "../../foundation";
 
-export default function Positioned(props: {
+export function Positioned(props: {
   x: "left" | "center" | "right";
   y: "top" | "middle" | "bottom";
   padding?: string;

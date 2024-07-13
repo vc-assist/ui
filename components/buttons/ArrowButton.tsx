@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 
-export default function ArrowButton(props: {
+export function ArrowButton(props: {
   up?: boolean;
   onClick?: () => void;
   classNames?: Partial<{

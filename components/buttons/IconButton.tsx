@@ -6,7 +6,7 @@ import {
 import type { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
 
-export default function IconButton(props: {
+export function IconButton(props: {
   label: string;
   icon: IconType;
   color: DefaultMantineColor;

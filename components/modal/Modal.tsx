@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MdClose } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 import { useSafeArea } from "../../foundation";
-import Positioned from "./Positioned";
+import { Positioned } from "./Positioned";
 
-export default function Modal(props: {
+export function Modal(props: {
   opened: boolean
   closeControls?: boolean,
   children: React.ReactNode
