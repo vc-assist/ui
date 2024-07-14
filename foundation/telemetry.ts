@@ -2,9 +2,11 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http"
 import { BatchSpanProcessor, WebTracerProvider } from "@opentelemetry/sdk-trace-web"
 import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
 import { Resource } from "@opentelemetry/resources";
-import { Span, type Context } from "@opentelemetry/api"
+import { Counter, Meter, metrics, Span, type Context } from "@opentelemetry/api"
 import { useEffect, useRef } from "react";
 import { trace, context } from "@opentelemetry/api";
+import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
+import { MeterProvider, PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics"
 
 /**
  * Creates a span that will exist for the duration of a component's lifecycle.
@@ -47,7 +49,10 @@ export type AfterErrorHook = ((err: unknown) => void) | undefined;
 
 export type TelemetryConfig = {
   serviceName: string
-  otlpHttpEndpoint: string
+  otlp: {
+    tracesHttpEndpoint: string
+    metricsHttpEndpoint: string
+  }
   afterError?: AfterErrorHook
 }
 
@@ -56,14 +61,27 @@ export function initTelemetry(config: TelemetryConfig) {
     [SEMRESATTRS_SERVICE_NAME]: config.serviceName,
   });
 
-  const exporter = new OTLPTraceExporter({
-    url: config.otlpHttpEndpoint,
+  const traceExporter = new OTLPTraceExporter({
+    url: config.otlp.tracesHttpEndpoint,
   })
-  const provider = new WebTracerProvider({
+  const tracerProvider = new WebTracerProvider({
     resource: OTEL_RESOURCE,
   })
-  provider.addSpanProcessor(new BatchSpanProcessor(exporter))
-  provider.register()
+  tracerProvider.addSpanProcessor(new BatchSpanProcessor(traceExporter))
+  tracerProvider.register()
+
+  const meterProvider = new MeterProvider({
+    resource: OTEL_RESOURCE,
+    readers: [
+      new PeriodicExportingMetricReader({
+        exporter: new OTLPMetricExporter({
+          url: config.otlp.metricsHttpEndpoint,
+        }),
+        exportIntervalMillis: 1000,
+      })
+    ],
+  })
+  metrics.setGlobalMeterProvider(meterProvider)
 }
 
 /**
@@ -143,4 +161,19 @@ export function createFnSpanner(tracerName: string) {
 }
 
 export type FnSpan = ReturnType<typeof createFnSpanner>;
+
+/**
+ * Creates a meter with some defaults defined.
+ */
+export function createDefaultMeter(meterName: string): {
+  object: Meter;
+  createCounter: (name: string) => Counter;
+} {
+  const meter = metrics.getMeter(meterName);
+  return {
+    object: meter,
+    createCounter: (name: string) =>
+      meter.createCounter(`${meterName}:${name}`),
+  };
+}
 
