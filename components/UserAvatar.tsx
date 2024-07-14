@@ -24,13 +24,13 @@ export function useStringToMantineColor(text: string): string {
   return color;
 }
 
-
-export function UserAvatar(props: {
+export type UserProfile = {
   name?: string
   email: string
   picture?: string
-  className?: string;
-}) {
+}
+
+export function UserAvatar(props: UserProfile & { className?: string; }) {
   const defaultColor = useStringToMantineColor(
     props.name ?? props.email,
   );
