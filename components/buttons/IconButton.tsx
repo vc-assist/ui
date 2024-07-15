@@ -1,21 +1,21 @@
 import {
   Button,
-  DefaultMantineColor,
+  type DefaultMantineColor,
   useMantineTheme,
-} from "@mantine/core";
-import type { IconType } from "react-icons";
-import { twMerge } from "tailwind-merge";
+} from "@mantine/core"
+import type { IconType } from "react-icons"
+import { twMerge } from "tailwind-merge"
 
 export function IconButton(props: {
-  label: string;
-  icon: IconType;
-  color: DefaultMantineColor;
-  onClick?: () => void;
-  horizontal?: boolean;
-  disabled?: boolean;
-  className?: string;
+  label: string
+  icon: IconType
+  color: DefaultMantineColor
+  onClick?: () => void
+  horizontal?: boolean
+  disabled?: boolean
+  className?: string
 }) {
-  const theme = useMantineTheme();
+  const theme = useMantineTheme()
 
   if (props.horizontal) {
     return (
@@ -28,11 +28,12 @@ export function IconButton(props: {
       >
         {props.label}
       </Button>
-    );
+    )
   }
 
   return (
     <button
+      type="button"
       onClick={props.onClick}
       disabled={props.disabled}
       className={twMerge(
@@ -53,5 +54,5 @@ export function IconButton(props: {
       <props.icon size={24} className="fill-current" />
       <p className="font-semibold text-xs text-center">{props.label}</p>
     </button>
-  );
+  )
 }

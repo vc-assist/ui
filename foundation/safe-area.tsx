@@ -1,4 +1,4 @@
-import { context } from "./context";
+import { context } from "./context"
 
 export type SafeArea = {
   top: number
@@ -8,4 +8,3 @@ export type SafeArea = {
 }
 
 export const [SafeAreaProvider, useSafeArea] = context<SafeArea>()
-

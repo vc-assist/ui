@@ -1,24 +1,24 @@
-import { motion, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { motion, useSpring } from "framer-motion"
+import { useEffect, useState } from "react"
+import { twMerge } from "tailwind-merge"
 
 // this value is > 1 because I'm afraid of floating point error
-const PATH_LENGTH_CONSTANT = 100;
+const PATH_LENGTH_CONSTANT = 100
 
 function DrawIcon(props: { className?: string }) {
   const containerSpring = useSpring(PATH_LENGTH_CONSTANT, {
     duration: 3000,
     bounce: 0,
-  });
+  })
   const tickSpring = useSpring(PATH_LENGTH_CONSTANT, {
     duration: 5000,
     bounce: 0,
-  });
+  })
 
   useEffect(() => {
-    containerSpring.set(0);
-    tickSpring.set(0.3 * PATH_LENGTH_CONSTANT);
-  }, [containerSpring, tickSpring]);
+    containerSpring.set(0)
+    tickSpring.set(0.3 * PATH_LENGTH_CONSTANT)
+  }, [containerSpring, tickSpring])
 
   return (
     // biome-ignore lint/a11y/noSvgWithoutTitle: How do you fix this?
@@ -62,18 +62,18 @@ function DrawIcon(props: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }
 
 function DrawBranding(props: {
-  className?: string;
-  onAnimationComplete?: () => void;
+  className?: string
+  onAnimationComplete?: () => void
 }) {
-  const [showTitle, setShowTitle] = useState(false);
+  const [showTitle, setShowTitle] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setShowTitle(true), 3000);
-  }, []);
+    setTimeout(() => setShowTitle(true), 3000)
+  }, [])
 
   return (
     <div className={twMerge(props.className, "flex items-center gap-4")}>
@@ -94,7 +94,7 @@ function DrawBranding(props: {
         </motion.h1>
       ) : undefined}
     </div>
-  );
+  )
 }
 
 export function StaticDrawIcon(props: { className?: string }) {
@@ -121,11 +121,11 @@ export function StaticDrawIcon(props: { className?: string }) {
         />
       </g>
     </svg>
-  );
+  )
 }
 
 function StaticBranding(props: {
-  className?: string;
+  className?: string
 }) {
   return (
     <div className={twMerge(props.className, "flex items-center gap-4")}>
@@ -137,13 +137,13 @@ function StaticBranding(props: {
         VC Assist
       </h1>
     </div>
-  );
+  )
 }
 
 export function LoadingAnimation(props: {
-  onAnimationComplete?: () => void;
+  onAnimationComplete?: () => void
 }) {
-  const [animFinished, setAnimFinished] = useState(false);
+  const [animFinished, setAnimFinished] = useState(false)
   return (
     <div className="flex w-full h-full">
       <div className="m-auto flex flex-col items-center gap-3">
@@ -162,12 +162,12 @@ export function LoadingAnimation(props: {
           <DrawBranding
             className="m-auto"
             onAnimationComplete={() => {
-              setAnimFinished(true);
-              props.onAnimationComplete?.();
+              setAnimFinished(true)
+              props.onAnimationComplete?.()
             }}
           />
         )}
       </div>
     </div>
-  );
+  )
 }

@@ -1,2 +1,2 @@
-export * from "./AIChat";
-export * from "./Chat";
+export * from "./AIChat"
+export * from "./Chat"

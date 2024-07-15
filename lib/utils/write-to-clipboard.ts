@@ -1,4 +1,4 @@
-import { notifications } from "@mantine/notifications";
+import { notifications } from "@mantine/notifications"
 
 export function writeToClipboard(text: string, message = "Copied."): void {
   navigator.clipboard.write([
@@ -7,11 +7,10 @@ export function writeToClipboard(text: string, message = "Copied."): void {
         type: "text/plain",
       }),
     }),
-  ]);
+  ])
   notifications.show({
     autoClose: 1000,
     message: message,
     color: "green",
-  });
+  })
 }
-

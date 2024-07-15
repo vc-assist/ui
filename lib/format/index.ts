@@ -6,40 +6,40 @@ export namespace Format {
    */
   export function initials(name: string): string | null {
     if (name.length === 0) {
-      return null;
+      return null
     }
-    const [first, last] = name.split(" ");
+    const [first, last] = name.split(" ")
     if (!first && !last) {
-      return name[0].toUpperCase();
+      return name[0].toUpperCase()
     }
     return (
       (first?.charAt(0)?.toUpperCase() ?? "") +
       (last?.charAt(0)?.toUpperCase() ?? "")
-    );
+    )
   }
 
-  const TB = 1_000_000_000_000;
-  const GB = 1_000_000_000;
-  const MB = 1_000_000;
-  const KB = 1_000;
-  const B = 1;
+  const TB = 1_000_000_000_000
+  const GB = 1_000_000_000
+  const MB = 1_000_000
+  const KB = 1_000
+  const B = 1
 
   export function fileSize(size: number): string {
-    let divisor: number = B;
-    let suffix = "B";
+    let divisor: number = B
+    let suffix = "B"
     if (size > TB) {
-      divisor = TB;
-      suffix = "TB";
+      divisor = TB
+      suffix = "TB"
     } else if (size > GB) {
-      divisor = GB;
-      suffix = "GB";
+      divisor = GB
+      suffix = "GB"
     } else if (size > MB) {
-      divisor = MB;
-      suffix = "MB";
+      divisor = MB
+      suffix = "MB"
     } else if (size > KB) {
-      divisor = KB;
-      suffix = "KB";
+      divisor = KB
+      suffix = "KB"
     }
-    return `${(size / divisor).toPrecision(3)}${suffix}`;
+    return `${(size / divisor).toPrecision(3)}${suffix}`
   }
 }

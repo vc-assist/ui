@@ -1,7 +1,7 @@
-export * from "./ColorKey";
-export * from "./UserAvatar";
-export * from "./InfoTooltip";
-export * from "./PopoutChip";
+export * from "./ColorKey"
+export * from "./UserAvatar"
+export * from "./InfoTooltip"
+export * from "./PopoutChip"
 export * from "./SettingsOptions"
 
 export * from "./buttons"

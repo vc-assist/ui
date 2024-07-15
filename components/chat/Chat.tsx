@@ -1,25 +1,25 @@
-import { Avatar, Button } from "@mantine/core";
-import { Panel } from "../panel/Panel";
-import { createRef, forwardRef, useEffect, useState } from "react";
-import { HiSparkles } from "react-icons/hi";
-import { MdSend } from "react-icons/md";
-import { useCurrentTime } from "../../lib/utils";
-import { formatDistance } from "date-fns";
-import { twMerge } from "tailwind-merge";
+import { Avatar, Button } from "@mantine/core"
+import { formatDistance } from "date-fns"
+import { createRef, forwardRef, useEffect, useState } from "react"
+import { HiSparkles } from "react-icons/hi"
+import { MdSend } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
+import { useCurrentTime } from "../../lib/utils"
+import { Panel } from "../panel/Panel"
 
 export type ChatMessage = {
-  user: string;
-  avatar: React.ReactNode;
-  text: string;
-  time: Date;
-};
+  user: string
+  avatar: React.ReactNode
+  text: string
+  time: Date
+}
 
 const MessageDisplay = forwardRef(
   (
     { message }: { message: ChatMessage },
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
-    const now = useCurrentTime();
+    const now = useCurrentTime()
 
     return (
       <div className="flex gap-3 items-start" ref={ref}>
@@ -36,24 +36,24 @@ const MessageDisplay = forwardRef(
           </p>
         </div>
       </div>
-    );
+    )
   },
-);
+)
 
 function TypingDisplay(props: {
-  name: string;
-  text: string;
+  name: string
+  text: string
 }) {
-  const [loadingDots, setLoadingDots] = useState(".");
-  const runGradient = true; // TODO: make this a setting
+  const [loadingDots, setLoadingDots] = useState(".")
+  const runGradient = true // TODO: make this a setting
 
   useEffect(() => {
     const interval = setInterval(
       () => setLoadingDots((dots) => (dots.length < 3 ? `${dots}.` : ".")),
       500,
-    );
-    return () => clearInterval(interval);
-  }, []);
+    )
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="flex gap-3 items-start">
@@ -122,7 +122,7 @@ function TypingDisplay(props: {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
 export function Chat({
@@ -132,25 +132,25 @@ export function Chat({
   className,
   typingDisplay,
 }: {
-  className?: string;
-  messages: ChatMessage[];
-  disabled: boolean;
-  send: (message: string) => void;
+  className?: string
+  messages: ChatMessage[]
+  disabled: boolean
+  send: (message: string) => void
   typingDisplay?: {
-    name: string;
-    text: string;
-  };
+    name: string
+    text: string
+  }
 }) {
-  const [message, setQuestion] = useState("");
+  const [message, setQuestion] = useState("")
 
-  const latestRef = createRef<HTMLDivElement>();
+  const latestRef = createRef<HTMLDivElement>()
   // biome-ignore lint/correctness/useExhaustiveDependencies: I think this was necessary for some reason
   useEffect(() => {
     if (latestRef.current === null) {
-      return;
+      return
     }
-    latestRef.current.scrollIntoView();
-  }, [messages.length]);
+    latestRef.current.scrollIntoView()
+  }, [messages.length])
 
   return (
     <div className={twMerge("flex flex-col gap-6", className)}>
@@ -176,7 +176,7 @@ export function Chat({
             onChange={(e) => setQuestion(e.currentTarget.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !(message.trim() === "") && !disabled) {
-                void send(message);
+                void send(message)
               }
             }}
           />
@@ -187,12 +187,12 @@ export function Chat({
           loading={disabled}
           disabled={message.trim() === "" && !disabled}
           onClick={() => {
-            void send(message);
+            void send(message)
           }}
         >
           <MdSend size="1rem" />
         </Button>
       </div>
     </div>
-  );
+  )
 }

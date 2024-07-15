@@ -1,11 +1,11 @@
-import { Title } from "@mantine/core";
-import { Panel } from "./Panel";
-import { MdVisibilityOff } from "react-icons/md";
-import { twMerge } from "tailwind-merge";
+import { Title } from "@mantine/core"
+import { MdVisibilityOff } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
+import { Panel } from "./Panel"
 
 export function WidgetHiddenPanel(props: {
-  message: string;
-  className?: string;
+  message: string
+  className?: string
 }) {
   return (
     <Panel className={twMerge("flex", props.className)}>
@@ -14,5 +14,5 @@ export function WidgetHiddenPanel(props: {
         <Title order={5}>{props.message}</Title>
       </div>
     </Panel>
-  );
+  )
 }

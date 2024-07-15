@@ -1,23 +1,23 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-import {ArrowButton} from "../buttons/ArrowButton";
-import { Panel, PanelRoot } from "./Panel";
+import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
+import { ArrowButton } from "../buttons/ArrowButton"
+import { Panel, type PanelRoot } from "./Panel"
 
 export function DrawerPanel(props: {
   classNames?: Partial<{
-    root: string;
-    button: string;
-  }>;
-  gapSize?: number;
-  expanded?: boolean;
-  onExpand?: (expanded: boolean) => void;
-  children: React.ReactNode;
-  drawer?: React.ReactNode;
-  panelRoot?: PanelRoot;
+    root: string
+    button: string
+  }>
+  gapSize?: number
+  expanded?: boolean
+  onExpand?: (expanded: boolean) => void
+  children: React.ReactNode
+  drawer?: React.ReactNode
+  panelRoot?: PanelRoot
 }) {
-  const [_expanded, setExpanded] = useState(false);
+  const [_expanded, setExpanded] = useState(false)
 
-  const expanded = props.expanded !== undefined ? props.expanded : _expanded;
+  const expanded = props.expanded !== undefined ? props.expanded : _expanded
 
   const drawer =
     props.drawer !== null && props.drawer !== undefined ? (
@@ -32,7 +32,7 @@ export function DrawerPanel(props: {
         ) : undefined}
         {props.drawer}
       </motion.div>
-    ) : undefined;
+    ) : undefined
 
   return (
     <Panel root={props.panelRoot} className={props.classNames?.root}>
@@ -43,13 +43,13 @@ export function DrawerPanel(props: {
           icon: "fill-gray-400 group-hover:bg-bg-dimmed",
         }}
         onClick={() => {
-          setExpanded(!_expanded);
-          props.onExpand?.(!expanded);
+          setExpanded(!_expanded)
+          props.onExpand?.(!expanded)
         }}
       >
         {props.children}
       </ArrowButton>
       <AnimatePresence>{expanded ? drawer : undefined}</AnimatePresence>
     </Panel>
-  );
+  )
 }

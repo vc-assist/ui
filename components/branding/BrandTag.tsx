@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import { twMerge } from "tailwind-merge"
 
 export function BrandTag(props: { className?: string }) {
   return (
@@ -15,5 +15,5 @@ export function BrandTag(props: { className?: string }) {
       />
       <p className="font-semibold">VC Assist</p>
     </div>
-  );
+  )
 }

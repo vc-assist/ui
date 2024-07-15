@@ -1,28 +1,29 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
-import { LogoutModal } from '../components';
+import { LogoutModal } from "../components"
 
 const meta: Meta<typeof LogoutModal> = {
-  title: 'VC Assist/LogoutModal',
+  title: "VC Assist/LogoutModal",
   component: LogoutModal,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  decorators: [(Story) => {
-    return (
-      <div className="flex">
-        <div className="m-auto">
-          <Story />
+  decorators: [
+    (Story) => {
+      return (
+        <div className="flex">
+          <div className="m-auto">
+            <Story />
+          </div>
         </div>
-      </div>
-    )
-  }]
+      )
+    },
+  ],
 }
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { }
-};
-
+  args: {},
+}

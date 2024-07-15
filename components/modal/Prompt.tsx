@@ -1,21 +1,22 @@
-import { Button, MantineColor, Title } from "@mantine/core";
-import { MdClose } from "react-icons/md";
-import { Panel } from "../panel/Panel";
+import { Button, type MantineColor, Title } from "@mantine/core"
+import { MdClose } from "react-icons/md"
+import { Panel } from "../panel/Panel"
 
 export function Prompt(props: {
-  loading?: boolean;
-  title: string;
-  children: React.ReactNode;
-  actionText: string;
-  actionColor: MantineColor;
-  onAction: () => void;
-  onClose: () => void;
+  loading?: boolean
+  title: string
+  children: React.ReactNode
+  actionText: string
+  actionColor: MantineColor
+  onAction: () => void
+  onClose: () => void
 }) {
   return (
     <Panel className="m-auto flex flex-col gap-3 min-w-[360px] p-4">
       <div className="flex gap-3 justify-between items-center">
         <Title order={4}>{props.title}</Title>
         <button
+          type="button"
           className="rounded-lg p-1 transition-all hover:bg-dimmed-subtle"
           onClick={props.onClose}
         >
@@ -34,6 +35,5 @@ export function Prompt(props: {
         </Button>
       </div>
     </Panel>
-  );
+  )
 }
-

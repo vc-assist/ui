@@ -1,19 +1,19 @@
-import { useRef, useState } from "react";
-import { Chat, type ChatMessage } from "./Chat";
-import { HiSparkles } from "react-icons/hi";
+import { useRef, useState } from "react"
+import { HiSparkles } from "react-icons/hi"
+import { Chat, type ChatMessage } from "./Chat"
 
 export function AIChat(props: {
-  className?: string;
-  aiName: string;
-  introduction?: string;
+  className?: string
+  aiName: string
+  introduction?: string
   createThread: (
     message: string,
-  ) => Promise<{ threadId: string; completion: string }>;
-  addMessage: (threadId: string, message: string) => Promise<string>;
+  ) => Promise<{ threadId: string; completion: string }>
+  addMessage: (threadId: string, message: string) => Promise<string>
 }) {
-  const threadId = useRef<string>();
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const threadId = useRef<string>()
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <Chat
@@ -41,12 +41,12 @@ export function AIChat(props: {
           : undefined
       }
       send={async (message) => {
-        setIsLoading(true);
+        setIsLoading(true)
         try {
           if (threadId.current === undefined) {
             const { completion, threadId: id } =
-              await props.createThread(message);
-            threadId.current = id;
+              await props.createThread(message)
+            threadId.current = id
             setMessages([
               ...messages,
               {
@@ -55,11 +55,11 @@ export function AIChat(props: {
                 avatar: <HiSparkles size={20} />,
                 time: new Date(),
               },
-            ]);
-            setIsLoading(false);
-            return;
+            ])
+            setIsLoading(false)
+            return
           }
-          const completion = await props.addMessage(threadId.current, message);
+          const completion = await props.addMessage(threadId.current, message)
           setMessages([
             ...messages,
             {
@@ -68,12 +68,12 @@ export function AIChat(props: {
               avatar: <HiSparkles size={20} />,
               time: new Date(),
             },
-          ]);
-          setIsLoading(false);
+          ])
+          setIsLoading(false)
         } catch (err) {
-          setIsLoading(false);
+          setIsLoading(false)
         }
       }}
     />
-  );
+  )
 }

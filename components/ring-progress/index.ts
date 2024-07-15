@@ -1,3 +1,2 @@
-export * from "./RingProgress";
-export * from "./RingProgressPicker";
-
+export * from "./RingProgress"
+export * from "./RingProgressPicker"

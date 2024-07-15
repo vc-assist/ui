@@ -1,26 +1,28 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
-import { Prompt } from '../components';
+import { Prompt } from "../components"
 
 const meta: Meta<typeof Prompt> = {
-  title: 'VC Assist/Prompt',
+  title: "VC Assist/Prompt",
   component: Prompt,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  decorators: [(Story) => {
-    return (
-      <div className="flex">
-        <div className="m-auto">
-          <Story />
+  decorators: [
+    (Story) => {
+      return (
+        <div className="flex">
+          <div className="m-auto">
+            <Story />
+          </div>
         </div>
-      </div>
-    )
-  }]
+      )
+    },
+  ],
 }
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
@@ -30,8 +32,8 @@ export const Default: Story = {
     children: "Prompt body text.",
     onClose: () => alert("closed"),
     onAction: () => alert("action"),
-  }
-};
+  },
+}
 
 export const Loading: Story = {
   args: {
@@ -42,6 +44,5 @@ export const Loading: Story = {
     onClose: () => alert("closed"),
     onAction: () => alert("action"),
     loading: true,
-  }
-};
-
+  },
+}

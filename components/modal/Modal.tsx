@@ -1,19 +1,19 @@
-import { Button, Portal } from "@mantine/core";
-import { useHotkeys } from "@mantine/hooks";
-import { AnimatePresence, motion } from "framer-motion";
-import { MdClose } from "react-icons/md";
-import { twMerge } from "tailwind-merge";
-import { useSafeArea } from "../../foundation";
-import { Positioned } from "./Positioned";
+import { Button, Portal } from "@mantine/core"
+import { useHotkeys } from "@mantine/hooks"
+import { AnimatePresence, motion } from "framer-motion"
+import { MdClose } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
+import { useSafeArea } from "../../foundation"
+import { Positioned } from "./Positioned"
 
 export function Modal(props: {
   opened: boolean
-  closeControls?: boolean,
+  closeControls?: boolean
   children: React.ReactNode
   onClose(): void
 }) {
-  const closeControls = props.closeControls ?? true;
-  const safeArea = useSafeArea();
+  const closeControls = props.closeControls ?? true
+  const safeArea = useSafeArea()
 
   const closeHandler = () => {
     if (!closeControls) {
@@ -25,7 +25,7 @@ export function Modal(props: {
   useHotkeys([
     ["Escape", closeHandler],
     ["27", closeHandler],
-  ]);
+  ])
 
   return (
     <Portal>

@@ -1,12 +1,24 @@
+import {
+  type Context,
+  type Counter,
+  type Meter,
+  type Span,
+  metrics,
+} from "@opentelemetry/api"
+import { context, trace } from "@opentelemetry/api"
+import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http"
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http"
-import { BatchSpanProcessor, WebTracerProvider } from "@opentelemetry/sdk-trace-web"
-import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
-import { Resource } from "@opentelemetry/resources";
-import { Counter, Meter, metrics, Span, type Context } from "@opentelemetry/api"
-import { useEffect, useRef } from "react";
-import { trace, context } from "@opentelemetry/api";
-import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
-import { MeterProvider, PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics"
+import { Resource } from "@opentelemetry/resources"
+import {
+  MeterProvider,
+  PeriodicExportingMetricReader,
+} from "@opentelemetry/sdk-metrics"
+import {
+  BatchSpanProcessor,
+  WebTracerProvider,
+} from "@opentelemetry/sdk-trace-web"
+import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions"
+import { useEffect, useRef } from "react"
 
 /**
  * Creates a span that will exist for the duration of a component's lifecycle.
@@ -16,20 +28,20 @@ export function useSpan(
   parentSpan: Span | undefined,
   name: string,
 ): Span {
-  const span = useRef<Span>();
+  const span = useRef<Span>()
 
   useEffect(() => {
     return () => {
-      span.current?.end();
-      span.current = undefined;
-    };
-  }, []);
+      span.current?.end()
+      span.current = undefined
+    }
+  }, [])
 
   if (!span.current) {
-    span.current = fnSpan(parentSpan, name, (s) => s, true, true);
+    span.current = fnSpan(parentSpan, name, (s) => s, true, true)
   }
 
-  return span.current as Span;
+  return span.current as Span
 }
 
 /**
@@ -38,14 +50,14 @@ export function useSpan(
  */
 export function narrowError(err: unknown): Error | string {
   if (err instanceof Error) {
-    return err;
+    return err
   }
-  return String(err);
+  return String(err)
 }
 
-let afterError: AfterErrorHook;
+let afterError: AfterErrorHook
 
-export type AfterErrorHook = ((err: unknown) => void) | undefined;
+export type AfterErrorHook = ((err: unknown) => void) | undefined
 
 export type TelemetryConfig = {
   serviceName: string
@@ -59,7 +71,7 @@ export type TelemetryConfig = {
 export function initTelemetry(config: TelemetryConfig) {
   const OTEL_RESOURCE = new Resource({
     [SEMRESATTRS_SERVICE_NAME]: config.serviceName,
-  });
+  })
 
   const traceExporter = new OTLPTraceExporter({
     url: config.otlp.tracesHttpEndpoint,
@@ -78,7 +90,7 @@ export function initTelemetry(config: TelemetryConfig) {
           url: config.otlp.metricsHttpEndpoint,
         }),
         exportIntervalMillis: 1000,
-      })
+      }),
     ],
   })
   metrics.setGlobalMeterProvider(meterProvider)
@@ -90,7 +102,7 @@ export function initTelemetry(config: TelemetryConfig) {
  * Uncaught exceptions will automatically be recorded unless otherwise specified by `noErrorHandling`.
  */
 export function createFnSpanner(tracerName: string) {
-  const tracer = trace.getTracer(tracerName);
+  const tracer = trace.getTracer(tracerName)
 
   return function fnSpan<T>(
     parent: Span | undefined,
@@ -99,81 +111,80 @@ export function createFnSpanner(tracerName: string) {
     noCleanup?: boolean,
     noErrorHandling?: boolean,
   ) {
-    let ctx: Context | undefined;
+    let ctx: Context | undefined
     if (parent) {
-      ctx = trace.setSpan(context.active(), parent);
+      ctx = trace.setSpan(context.active(), parent)
     }
-    const span = tracer.startSpan(`${tracerName}:${name}`, undefined, ctx);
+    const span = tracer.startSpan(`${tracerName}:${name}`, undefined, ctx)
 
     try {
-      const output = fn(span);
+      const output = fn(span)
       if (output instanceof Promise) {
         if (!noCleanup) {
           output
             .then(() => {
               if (!noCleanup) {
-                span.end();
+                span.end()
               }
             })
             .catch((err) => {
               if (!noErrorHandling) {
-                span.recordException(err);
+                span.recordException(err)
                 span.setStatus({
                   code: 2, // this is the ERROR SpanStatusCode
                   message: err.message,
-                });
-                afterError?.(err);
+                })
+                afterError?.(err)
               }
               if (!noCleanup) {
-                span.end();
+                span.end()
               }
-            });
+            })
         }
-        return output;
+        return output
       }
       if (!noCleanup) {
-        span.end();
+        span.end()
       }
-      return output;
+      return output
     } catch (err) {
       if (!noErrorHandling) {
-        span.recordException(narrowError(err));
+        span.recordException(narrowError(err))
 
-        let message: string;
+        let message: string
         if (err instanceof Error) {
-          message = err.message;
+          message = err.message
         } else {
-          message = String(err);
+          message = String(err)
         }
         span.setStatus({
           code: 2, // this is the ERROR SpanStatusCode
           message: message,
-        });
+        })
 
-        afterError?.(err);
+        afterError?.(err)
       }
       if (!noCleanup) {
-        span.end();
+        span.end()
       }
-      throw err;
+      throw err
     }
-  };
+  }
 }
 
-export type FnSpan = ReturnType<typeof createFnSpanner>;
+export type FnSpan = ReturnType<typeof createFnSpanner>
 
 /**
  * Creates a meter with some defaults defined.
  */
 export function createDefaultMeter(meterName: string): {
-  object: Meter;
-  createCounter: (name: string) => Counter;
+  object: Meter
+  createCounter: (name: string) => Counter
 } {
-  const meter = metrics.getMeter(meterName);
+  const meter = metrics.getMeter(meterName)
   return {
     object: meter,
     createCounter: (name: string) =>
       meter.createCounter(`${meterName}:${name}`),
-  };
+  }
 }
-

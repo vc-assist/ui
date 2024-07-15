@@ -1,20 +1,20 @@
 import {
   ColorSwatch,
-  DefaultMantineColor,
+  type DefaultMantineColor,
   UnstyledButton,
   useMantineTheme,
-} from "@mantine/core";
-import { useElementSize } from "@mantine/hooks";
-import { twMerge } from "tailwind-merge";
-import { RingProgress } from "./RingProgress";
+} from "@mantine/core"
+import { useElementSize } from "@mantine/hooks"
+import { twMerge } from "tailwind-merge"
+import { RingProgress } from "./RingProgress"
 
 function AnimatedUnderline(props: {
-  children: React.ReactNode;
+  children: React.ReactNode
   classNames?: Partial<{
-    container?: string;
-    text?: string;
-  }>;
-  hide?: boolean;
+    container?: string
+    text?: string
+  }>
+  hide?: boolean
 }) {
   return (
     <div className={props.classNames?.container}>
@@ -28,38 +28,38 @@ function AnimatedUnderline(props: {
         {props.children}
       </span>
     </div>
-  );
+  )
 }
 
 export type RingSection = {
-  value: number;
-  color: DefaultMantineColor;
-  label: () => React.ReactNode;
-  id: string;
-};
+  value: number
+  color: DefaultMantineColor
+  label: () => React.ReactNode
+  id: string
+}
 
 /**
  * All number values should be a value from 0-100.
  */
 export function RingProgressPicker(props: {
-  className?: string;
-  sections: RingSection[];
-  value?: RingSection;
-  onChoose?: (segment: RingSection) => void;
-  disabled?: boolean;
+  className?: string
+  sections: RingSection[]
+  value?: RingSection
+  onChoose?: (segment: RingSection) => void
+  disabled?: boolean
   formatters?: Partial<{
-    tooltip: (segment: RingSection) => string;
-    progressLabel: (total: number) => string;
-  }>;
+    tooltip: (segment: RingSection) => string
+    progressLabel: (total: number) => string
+  }>
 }) {
-  const disabled = props.disabled ?? false;
-  const { ref, width } = useElementSize();
-  const { colors } = useMantineTheme();
+  const disabled = props.disabled ?? false
+  const { ref, width } = useElementSize()
+  const { colors } = useMantineTheme()
 
-  const expanded = width > 300;
-  let sum = 0;
+  const expanded = width > 300
+  let sum = 0
   for (const s of props.sections) {
-    sum += s.value;
+    sum += s.value
   }
 
   return (
@@ -79,9 +79,9 @@ export function RingProgressPicker(props: {
           value: s.value,
           onClick: () => {
             if (disabled) {
-              return;
+              return
             }
-            props.onChoose?.(s);
+            props.onChoose?.(s)
           },
           tooltip: props.formatters?.tooltip?.(s) ?? `${s.value.toFixed(1)}%`,
           className: twMerge(
@@ -108,9 +108,9 @@ export function RingProgressPicker(props: {
               }
               onClick={() => {
                 if (disabled) {
-                  return;
+                  return
                 }
-                props.onChoose?.(s);
+                props.onChoose?.(s)
               }}
               key={s.id}
             >
@@ -125,9 +125,9 @@ export function RingProgressPicker(props: {
                 <s.label />
               </AnimatedUnderline>
             </UnstyledButton>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }

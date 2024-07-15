@@ -1,14 +1,14 @@
-import { twMerge } from "tailwind-merge";
-import { Tooltip, UnstyledButton } from "@mantine/core";
-import { useState } from "react";
-import { MdInfo } from "react-icons/md";
+import { Tooltip, UnstyledButton } from "@mantine/core"
+import { useState } from "react"
+import { MdInfo } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
 
 export function InfoTooltip(props: {
-  className?: string;
-  message: string;
-  children?: React.ReactNode;
+  className?: string
+  message: string
+  children?: React.ReactNode
 }) {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(false)
 
   return (
     <Tooltip
@@ -25,5 +25,5 @@ export function InfoTooltip(props: {
         {props.children ?? <MdInfo size={20} />}
       </UnstyledButton>
     </Tooltip>
-  );
+  )
 }

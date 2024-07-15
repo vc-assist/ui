@@ -1,14 +1,14 @@
-import { Popover, Text, ThemeIcon, UnstyledButton } from "@mantine/core";
-import type { IconType } from "react-icons";
-import { twMerge } from "tailwind-merge";
+import { Popover, Text, ThemeIcon, UnstyledButton } from "@mantine/core"
+import type { IconType } from "react-icons"
+import { twMerge } from "tailwind-merge"
 
 export function PopoutChip(props: {
-  title?: string;
-  icon?: IconType;
-  className?: string;
-  children: React.ReactNode;
-  chip: React.ReactNode;
-  onOpened?: (opened: boolean) => void;
+  title?: string
+  icon?: IconType
+  className?: string
+  children: React.ReactNode
+  chip: React.ReactNode
+  onOpened?: (opened: boolean) => void
 }) {
   return (
     <Popover
@@ -50,5 +50,5 @@ export function PopoutChip(props: {
         {props.chip}
       </Popover.Dropdown>
     </Popover>
-  );
+  )
 }

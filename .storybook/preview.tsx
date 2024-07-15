@@ -1,12 +1,6 @@
-import "@mantine/core/styles.css";
-import "../styles/app.css"
-import "../styles/content.css"
-import "../styles/preflight.css"
-import "../styles/fix-jank/mantine.css"
-import "../styles/fix-jank/mobile.css"
-
-import React from "react"
-import { Preview } from '@storybook/react';
+import "@mantine/core/styles.css"
+import "../styles.css"
+import type { Preview } from "@storybook/react"
 import { Foundation } from "../foundation"
 
 const FoundationProvider = Foundation({
@@ -14,8 +8,8 @@ const FoundationProvider = Foundation({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 })
 
 const preview: Preview = {
@@ -34,6 +28,6 @@ const preview: Preview = {
       </FoundationProvider>
     ),
   ],
-};
+}
 
-export default preview;
+export default preview

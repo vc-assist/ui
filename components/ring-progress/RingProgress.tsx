@@ -1,7 +1,7 @@
 import {
   RingProgress as MantineRingProgress,
   type RingProgressProps,
-} from "@mantine/core";
+} from "@mantine/core"
 
 /**
  * A wrapper around mantine's RingProgress but with centering fixed and a default background color.
@@ -19,5 +19,5 @@ export function RingProgress(props: RingProgressProps) {
         },
       }}
     />
-  );
+  )
 }

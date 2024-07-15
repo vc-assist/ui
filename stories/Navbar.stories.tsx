@@ -1,27 +1,29 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
 import { Ri4kFill, RiHqFill, RiLinksLine } from "react-icons/ri"
-import { NavbarList } from '../components';
+import { NavbarList } from "../components"
 
 const meta: Meta<typeof NavbarList> = {
-  title: 'VC Assist/NavbarList',
+  title: "VC Assist/NavbarList",
   component: NavbarList,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  decorators: [(Story) => {
-    return (
-      <div className="flex">
-        <div className="m-auto">
-          <Story />
+  decorators: [
+    (Story) => {
+      return (
+        <div className="flex">
+          <div className="m-auto">
+            <Story />
+          </div>
         </div>
-      </div>
-    )
-  }]
+      )
+    },
+  ],
 }
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Desktop: Story = {
   args: {
@@ -31,21 +33,21 @@ export const Desktop: Story = {
       {
         icon: RiLinksLine,
         title: "Saved links",
-        route: "/links"
+        route: "/links",
       },
       {
         icon: Ri4kFill,
         title: "4k videos",
-        route: "/video"
+        route: "/video",
       },
       {
         icon: RiHqFill,
         title: "High quality audio",
-        route: "/audio"
+        route: "/audio",
       },
-    ]
-  }
-};
+    ],
+  },
+}
 
 export const Mobile: Story = {
   args: {
@@ -55,18 +57,18 @@ export const Mobile: Story = {
       {
         icon: RiLinksLine,
         title: "Saved links",
-        route: "/links"
+        route: "/links",
       },
       {
         icon: Ri4kFill,
         title: "4k videos",
-        route: "/video"
+        route: "/video",
       },
       {
         icon: RiHqFill,
         title: "High quality audio",
-        route: "/audio"
+        route: "/audio",
       },
-    ]
-  }
-};
+    ],
+  },
+}

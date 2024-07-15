@@ -1,16 +1,16 @@
-import { UnstyledButton } from "@mantine/core";
-import { motion } from "framer-motion";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { twMerge } from "tailwind-merge";
+import { UnstyledButton } from "@mantine/core"
+import { motion } from "framer-motion"
+import { MdKeyboardArrowDown } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
 
 export function ArrowButton(props: {
-  up?: boolean;
-  onClick?: () => void;
+  up?: boolean
+  onClick?: () => void
   classNames?: Partial<{
-    button: string;
-    icon: string;
-  }>;
-  children?: React.ReactNode;
+    button: string
+    icon: string
+  }>
+  children?: React.ReactNode
 }) {
   return (
     <UnstyledButton
@@ -33,5 +33,5 @@ export function ArrowButton(props: {
         />
       </motion.div>
     </UnstyledButton>
-  );
+  )
 }

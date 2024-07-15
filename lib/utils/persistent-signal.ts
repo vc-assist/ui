@@ -1,58 +1,58 @@
-import { effect, signal } from "@preact/signals-react";
+import { effect, signal } from "@preact/signals-react"
 
 function serializeAny(value: unknown): string {
   switch (typeof value) {
     case "bigint":
-      return `b${value.toString()}`;
+      return `b${value.toString()}`
     case "boolean":
-      return value ? "+" : "!";
+      return value ? "+" : "!"
     case "function":
-      return value.toString();
+      return value.toString()
     case "number":
-      return value.toString();
+      return value.toString()
     case "object":
-      return JSON.stringify(value);
+      return JSON.stringify(value)
     case "string":
-      return `"${value}"`;
+      return `"${value}"`
     case "symbol":
-      return `s${value.description}`;
+      return `s${value.description}`
     case "undefined":
-      return "undefined";
+      return "undefined"
   }
 }
 
 function parseAny(value: string): unknown {
-  const charCode = value.charCodeAt(0);
-  const char = value[0];
+  const charCode = value.charCodeAt(0)
+  const char = value[0]
 
   if (charCode >= 48 && charCode < 58) {
     // if it is a number 0-9
-    return Number(value);
+    return Number(value)
   }
 
   switch (char) {
     case '"':
-      return value.slice(1, value.length - 1);
+      return value.slice(1, value.length - 1)
     case "+":
-      return true;
+      return true
     case "!":
-      return false;
+      return false
     case "{":
     case "[":
-      return JSON.parse(value);
+      return JSON.parse(value)
     case "b":
-      return BigInt(value.slice(1));
+      return BigInt(value.slice(1))
     case "f":
-      return Function(value);
+      return Function(value)
     case "s":
-      return Symbol(value.slice(1));
+      return Symbol(value.slice(1))
     case "u":
-      return undefined;
+      return undefined
   }
 
-  throw new Error("Encountered unknown serialized value.", { cause: value });
+  throw new Error("Encountered unknown serialized value.", { cause: value })
 }
- 
+
 /**
  * Creates a signal that will save and load to localStorage.
  */
@@ -61,21 +61,21 @@ export function persistentSignal<T extends Zod.ZodTypeAny>({
   schema,
   defaultValue,
 }: {
-  key: string;
-  schema: T;
-  defaultValue: Zod.TypeOf<T>;
+  key: string
+  schema: T
+  defaultValue: Zod.TypeOf<T>
 }) {
-  let stored: Zod.TypeOf<T> | undefined;
-  const storedData = localStorage.getItem(key);
+  let stored: Zod.TypeOf<T> | undefined
+  const storedData = localStorage.getItem(key)
   if (storedData) {
-    const result = schema.safeParse(parseAny(storedData));
+    const result = schema.safeParse(parseAny(storedData))
     if (result.success) {
-      stored = result.data;
+      stored = result.data
     }
   }
-  const theme = signal<Zod.TypeOf<T>>(stored ?? defaultValue);
+  const theme = signal<Zod.TypeOf<T>>(stored ?? defaultValue)
   effect(() => {
-    localStorage.setItem(key, serializeAny(theme.value));
-  });
-  return theme;
+    localStorage.setItem(key, serializeAny(theme.value))
+  })
+  return theme
 }

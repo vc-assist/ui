@@ -1,0 +1,81 @@
+.content p,
+.content span,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  font-weight: 500;
+  margin: 0;
+}
+
+.content h1 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.content h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.content h3 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.content h4 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.content h5 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.content h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.content b,
+.content strong {
+  font-weight: 600;
+}
+
+.content ul,
+.content ol {
+  padding-left: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.content ul {
+  list-style-type: disc;
+}
+.content ul ul {
+  list-style-type: circle;
+}
+.content ul ul ul {
+  list-style-type: square;
+}
+.content ol {
+  list-style-type: decimal;
+}
+.content ol ol {
+  list-style-type: lower-latin;
+}
+.content ol ol ol {
+  list-style-type: lower-roman;
+}

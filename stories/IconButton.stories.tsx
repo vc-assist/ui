@@ -1,35 +1,37 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
 import { RiDownloadLine } from "react-icons/ri"
-import { IconButton } from '../components';
+import { IconButton } from "../components"
 
 const meta: Meta<typeof IconButton> = {
-  title: 'VC Assist/IconButton',
+  title: "VC Assist/IconButton",
   component: IconButton,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  decorators: [(Story) => {
-    return (
-      <div className="flex">
-        <div className="m-auto">
-          <Story />
+  decorators: [
+    (Story) => {
+      return (
+        <div className="flex">
+          <div className="m-auto">
+            <Story />
+          </div>
         </div>
-      </div>
-    )
-  }]
+      )
+    },
+  ],
 }
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
     label: "Request Data",
     icon: RiDownloadLine,
     color: "blue",
-  }
-};
+  },
+}
 
 export const Horizontal: Story = {
   args: {
@@ -37,16 +39,16 @@ export const Horizontal: Story = {
     icon: RiDownloadLine,
     color: "blue",
     horizontal: true,
-  }
-};
+  },
+}
 export const DefaultDisabled: Story = {
   args: {
     label: "Request Data",
     icon: RiDownloadLine,
     color: "blue",
-    disabled: true
-  }
-};
+    disabled: true,
+  },
+}
 
 export const HorizontalDisabled: Story = {
   args: {
@@ -54,6 +56,6 @@ export const HorizontalDisabled: Story = {
     icon: RiDownloadLine,
     color: "blue",
     horizontal: true,
-    disabled: true
-  }
-};
+    disabled: true,
+  },
+}

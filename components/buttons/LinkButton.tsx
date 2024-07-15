@@ -1,6 +1,6 @@
-import { useComputedColorScheme } from "@mantine/core";
-import { forwardRef } from "react";
-import { twMerge } from "tailwind-merge";
+import { useComputedColorScheme } from "@mantine/core"
+import { forwardRef } from "react"
+import { twMerge } from "tailwind-merge"
 
 /**
  * Do not get this confused with Link. This is just
@@ -11,12 +11,12 @@ import { twMerge } from "tailwind-merge";
 export const LinkButton = forwardRef<
   HTMLButtonElement,
   {
-    className?: string;
-    children: React.ReactNode;
-    onClick?: React.MouseEventHandler;
+    className?: string
+    children: React.ReactNode
+    onClick?: React.MouseEventHandler
   }
 >(function LinkButton(props, ref) {
-  const colorScheme = useComputedColorScheme();
+  const colorScheme = useComputedColorScheme()
   return (
     <button
       ref={ref}
@@ -30,6 +30,5 @@ export const LinkButton = forwardRef<
     >
       {props.children}
     </button>
-  );
-});
-
+  )
+})

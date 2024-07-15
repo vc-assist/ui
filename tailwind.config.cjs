@@ -1,36 +1,10 @@
-const colors = require("tailwindcss/colors");
-
-export const COLORS = {
-  blue: "#242463",
-  lightBlue: "#A5CEF2",
-  purple: "#FFB703",
-  red: "#ec4234",
-  lightRed: "#e5736e",
-  orange: "#fb923c",
-  gray: "#6F6F6F",
-  lightGray: "#e9e7ec",
-  lightGreen: "#53b486",
-};
-
-export const COLOR_LIST = [
-  COLORS.red,
-  COLORS.blue,
-  COLORS.purple,
-  COLORS.orange,
-  COLORS.lightBlue,
-  COLORS.lightRed,
-  COLORS.lightGreen,
-];
+const colors = require("tailwindcss/colors")
 
 module.exports = {
   corePlugins: {
     preflight: false,
   },
-  content: [
-    "components/**/*.tsx",
-    "foundation/**/*.tsx",
-    "styles/**/*.css",
-  ],
+  content: ["components/**/*.tsx", "foundation/**/*.tsx", "styles/**/*.css"],
   theme: {
     colors: {
       transparent: "transparent",
@@ -55,4 +29,4 @@ module.exports = {
       "light-green": "#53b486",
     },
   },
-};
+}

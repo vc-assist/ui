@@ -1,13 +1,13 @@
-import { Text } from "@mantine/core";
-import { MdLogout } from "react-icons/md";
-import { useDisclosure } from "@mantine/hooks";
-import { IconButton } from "../buttons";
-import { Modal } from "./Modal";
-import { Prompt } from "./Prompt";
+import { Text } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
+import { MdLogout } from "react-icons/md"
+import { IconButton } from "../buttons"
+import { Modal } from "./Modal"
+import { Prompt } from "./Prompt"
 
 export function LogoutModal(props: {
-  handleLogout: () => void;
-  className?: string;
+  handleLogout: () => void
+  className?: string
 }) {
   const [opened, { open, close }] = useDisclosure(false)
   return (
@@ -27,12 +27,12 @@ export function LogoutModal(props: {
           actionColor="red"
           onClose={close}
           onAction={() => {
-            props.handleLogout();
+            props.handleLogout()
           }}
         >
           <Text>Are you sure you want to log out?</Text>
         </Prompt>
       </Modal>
     </>
-  );
+  )
 }

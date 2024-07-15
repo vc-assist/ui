@@ -1,9 +1,9 @@
+import { Code, Text, Title } from "@mantine/core"
+import { notifications } from "@mantine/notifications"
+import { useState } from "react"
 import { ErrorBoundary as ErrorBoundaryComponent } from "react-error-boundary"
-import { Code, Text, Title } from "@mantine/core";
-import { useState } from "react";
-import { Panel } from "../components/panel/Panel";
-import { notifications } from "@mantine/notifications";
-import { createFnSpanner } from "./telemetry";
+import { Panel } from "../components/panel/Panel"
+import { createFnSpanner } from "./telemetry"
 
 export function notifyError(err: unknown) {
   if (import.meta.env.MODE === "production") {
@@ -11,27 +11,27 @@ export function notifyError(err: unknown) {
       message: "Something went wrong!",
       autoClose: 3000,
       color: "red",
-    });
+    })
   } else {
     notifications.show({
       message: err instanceof Error ? err.message : String(err),
       title: "Something went wrong!",
       autoClose: 10000,
       color: "red",
-    });
+    })
   }
 }
 
 function ErrorPage(
   props: Partial<{
-    errorId: string;
-    description: string;
-    shortVersion: string;
-    longVersion: string;
-    children: React.ReactNode;
+    errorId: string
+    description: string
+    shortVersion: string
+    longVersion: string
+    children: React.ReactNode
   }>,
 ) {
-  const [isLongVersion, setIsLongVersion] = useState<boolean>(false);
+  const [isLongVersion, setIsLongVersion] = useState<boolean>(false)
 
   return (
     <div className="flex h-full">
@@ -70,7 +70,7 @@ function ErrorPage(
         {props.children}
       </Panel>
     </div>
-  );
+  )
 }
 
 const fnSpan = createFnSpanner("global-error")
@@ -79,14 +79,14 @@ export function ErrorBoundary({ children }: { children: React.ReactNode }) {
   return (
     <ErrorBoundaryComponent
       fallbackRender={({ error: err }) => {
-        notifyError(err);
+        notifyError(err)
 
         if (err instanceof Error) {
-          let cause = String(err.cause);
+          let cause = String(err.cause)
           if (typeof err.cause === "object") {
             try {
-              cause = JSON.stringify(err.cause);
-            } catch { }
+              cause = JSON.stringify(err.cause)
+            } catch {}
           }
 
           fnSpan(undefined, "fatal-error", (span) => {
@@ -98,7 +98,7 @@ export function ErrorBoundary({ children }: { children: React.ReactNode }) {
 
           return (
             <ErrorPage errorId={err.message} description={err.stack ?? ""} />
-          );
+          )
         }
 
         fnSpan(undefined, "fatal-error", (span) => {
@@ -110,7 +110,7 @@ export function ErrorBoundary({ children }: { children: React.ReactNode }) {
             errorId="Unknown error"
             description="Something went wrong!"
           />
-        );
+        )
       }}
     >
       {children}

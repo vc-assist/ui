@@ -1,15 +1,15 @@
-import type { IconType } from "react-icons";
-import { HiUser } from "react-icons/hi";
-import { Panel } from "../panel/Panel";
-import { Title } from "@mantine/core";
-import { twMerge } from "tailwind-merge";
+import { Title } from "@mantine/core"
+import type { IconType } from "react-icons"
+import { HiUser } from "react-icons/hi"
+import { twMerge } from "tailwind-merge"
+import { Panel } from "../panel/Panel"
 
 type NavButtonProps = {
-  icon: (props: { className?: string }) => JSX.Element;
-  label?: string;
+  icon: (props: { className?: string }) => JSX.Element
+  label?: string
   routeSelected: boolean
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 function NavButton(props: NavButtonProps) {
   const className = twMerge(
@@ -18,7 +18,7 @@ function NavButton(props: NavButtonProps) {
     props.routeSelected
       ? "bg-bg-dimmed text-dimmed hover:text-dimmed fill-primary"
       : "text-dimmed fill-dimmed hover:cursor-pointer hover:text-primary",
-  );
+  )
 
   const children = (
     <>
@@ -29,31 +29,31 @@ function NavButton(props: NavButtonProps) {
         </Title>
       ) : undefined}
     </>
-  );
+  )
 
   if (props.onClick) {
     return (
-      <button className={className} onClick={props.onClick}>
+      <button type="button" className={className} onClick={props.onClick}>
         {children}
       </button>
-    );
+    )
   }
 
   // this is done so one can "tab" over buttons that don't do anything
-  return <div className={className}>{children}</div>;
+  return <div className={className}>{children}</div>
 }
 
 export type NavbarRoute = {
-  title: string;
-  icon: IconType;
-  route: string;
-};
+  title: string
+  icon: IconType
+  route: string
+}
 
 export function NavbarList(props: {
-  route: string;
-  routes: NavbarRoute[];
-  layout: "mobile" | "desktop";
-  onNavigate: (route: string) => void;
+  route: string
+  routes: NavbarRoute[]
+  layout: "mobile" | "desktop"
+  onNavigate: (route: string) => void
 }) {
   if (props.layout === "mobile") {
     return (
@@ -66,21 +66,21 @@ export function NavbarList(props: {
                 routeSelected={props.route === route}
                 icon={icon}
                 onClick={() => {
-                  props.onNavigate(route);
+                  props.onNavigate(route)
                 }}
               />
-            );
+            )
           })}
           <NavButton
             routeSelected={props.route === "/profile"}
             icon={HiUser}
             onClick={() => {
-              props.onNavigate("/profile");
+              props.onNavigate("/profile")
             }}
           />
         </div>
       </Panel>
-    );
+    )
   }
 
   return (
@@ -96,11 +96,11 @@ export function NavbarList(props: {
             label={title}
             routeSelected={props.route === path}
             onClick={() => {
-              props.onNavigate(path);
+              props.onNavigate(path)
             }}
           />
-        );
+        )
       })}
     </Panel>
-  );
+  )
 }

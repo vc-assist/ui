@@ -1,23 +1,23 @@
 import {
-  DefaultMantineColor,
+  type DefaultMantineColor,
   Text,
   ThemeIcon,
   UnstyledButton,
-} from "@mantine/core";
-import { useMemo } from "react";
+} from "@mantine/core"
+import { useSignals } from "@preact/signals-react/runtime"
+import { useMemo } from "react"
 import {
   MdClose,
   MdKeyboardArrowDown,
   MdKeyboardArrowUp,
   MdTipsAndUpdates,
-} from "react-icons/md";
-import { twMerge } from "tailwind-merge";
-import { z } from "zod";
-import { persistentSignal } from "../../lib/utils";
-import { Panel } from "./Panel";
-import { useSignals } from "@preact/signals-react/runtime";
+} from "react-icons/md"
+import { twMerge } from "tailwind-merge"
+import { z } from "zod"
+import { persistentSignal } from "../../lib/utils"
+import { Panel } from "./Panel"
 
-export const enum AlertVariant {
+export enum AlertVariant {
   STATIC = 0,
   DISMISSIBLE = 1,
   EXPANDABLE = 2,
@@ -25,19 +25,19 @@ export const enum AlertVariant {
 
 export function AlertPanel(props: {
   classNames?: Partial<{
-    root: string;
-    inner: string;
-  }>;
-  id: string;
-  icon?: React.ReactNode;
-  title?: string;
-  color?: DefaultMantineColor;
-  children?: React.ReactNode;
-  variant?: AlertVariant;
+    root: string
+    inner: string
+  }>
+  id: string
+  icon?: React.ReactNode
+  title?: string
+  color?: DefaultMantineColor
+  children?: React.ReactNode
+  variant?: AlertVariant
 }) {
-  useSignals();
+  useSignals()
 
-  const variant = props.variant ?? AlertVariant.STATIC;
+  const variant = props.variant ?? AlertVariant.STATIC
 
   const closed = useMemo(
     () =>
@@ -47,11 +47,11 @@ export function AlertPanel(props: {
         defaultValue: false,
       }),
     [props.id],
-  );
-  const color = props.color ?? "violet";
+  )
+  const color = props.color ?? "violet"
 
   if (closed.value && variant === AlertVariant.DISMISSIBLE) {
-    return null;
+    return null
   }
 
   return (
@@ -77,7 +77,7 @@ export function AlertPanel(props: {
           : props.children}
       </div>
       {variant === AlertVariant.DISMISSIBLE ||
-        variant === AlertVariant.EXPANDABLE ? (
+      variant === AlertVariant.EXPANDABLE ? (
         <div>
           <UnstyledButton
             className={twMerge(
@@ -87,11 +87,11 @@ export function AlertPanel(props: {
             onClick={() => {
               switch (variant) {
                 case AlertVariant.DISMISSIBLE:
-                  closed.value = true;
-                  break;
+                  closed.value = true
+                  break
                 case AlertVariant.EXPANDABLE:
-                  closed.value = !closed.value;
-                  break;
+                  closed.value = !closed.value
+                  break
               }
             }}
           >
@@ -106,5 +106,5 @@ export function AlertPanel(props: {
         </div>
       ) : undefined}
     </Panel>
-  );
+  )
 }

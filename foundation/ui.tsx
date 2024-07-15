@@ -2,26 +2,26 @@ import {
   ColorSchemeScript,
   MantineProvider,
   useComputedColorScheme,
-} from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { useEffect } from "react";
+} from "@mantine/core"
+import { Notifications } from "@mantine/notifications"
+import { useEffect } from "react"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 
 function oppositeColor(color: "light" | "dark"): "light" | "dark" {
-  return color === "dark" ? "light" : "dark";
+  return color === "dark" ? "light" : "dark"
 }
 
 function WithMetaColor() {
-  const colorScheme = useComputedColorScheme();
+  const colorScheme = useComputedColorScheme()
 
   useEffect(() => {
-    const html = document.querySelector("html");
+    const html = document.querySelector("html")
     if (!html) {
-      return;
+      return
     }
-    html.classList.remove(oppositeColor(colorScheme));
-    html.classList.add(colorScheme);
-  }, [colorScheme]);
+    html.classList.remove(oppositeColor(colorScheme))
+    html.classList.add(colorScheme)
+  }, [colorScheme])
 
   return (
     <Helmet>
@@ -30,7 +30,7 @@ function WithMetaColor() {
         content={colorScheme === "dark" ? "#18181b" : "#e5e7eb"}
       />
     </Helmet>
-  );
+  )
 }
 
 /**
@@ -62,7 +62,5 @@ export function UIProvider(props: { children: React.ReactNode }) {
         <Notifications />
       </MantineProvider>
     </>
-  );
+  )
 }
-
-

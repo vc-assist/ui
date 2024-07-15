@@ -1,7 +1,7 @@
-import { Text } from "@mantine/core";
-import { AnimatePresence, type Variants, motion } from "framer-motion";
-import { useState } from "react";
-import { ArrowButton } from "../buttons";
+import { Text } from "@mantine/core"
+import { AnimatePresence, type Variants, motion } from "framer-motion"
+import { useState } from "react"
+import { ArrowButton } from "../buttons"
 
 const itemAnimationVariants: Variants = {
   hidden: {
@@ -12,16 +12,16 @@ const itemAnimationVariants: Variants = {
     opacity: 1,
     y: 0,
   },
-};
+}
 
 export function StaggeredList(props: {
-  title: string;
-  children: JSX.Element[];
-  expandedByDefault?: boolean;
-  stagger?: number;
+  title: string
+  children: JSX.Element[]
+  expandedByDefault?: boolean
+  stagger?: number
 }) {
-  const stagger = props.stagger ?? 0.1;
-  const [expanded, setExpanded] = useState(props.expandedByDefault ?? true);
+  const stagger = props.stagger ?? 0.1
+  const [expanded, setExpanded] = useState(props.expandedByDefault ?? true)
 
   return (
     <motion.div
@@ -78,12 +78,12 @@ export function StaggeredList(props: {
                   >
                     {child}
                   </motion.li>
-                );
+                )
               })}
             </motion.ul>
           </motion.div>
         ) : undefined}
       </AnimatePresence>
     </motion.div>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-import { Title } from "@mantine/core";
-import { twMerge } from "tailwind-merge";
-import { Panel } from "./Panel";
+import { Title } from "@mantine/core"
+import { twMerge } from "tailwind-merge"
+import { Panel } from "./Panel"
 
 export function WidgetPanel(props: {
-  title: string;
-  titleBarRight?: React.ReactNode;
-  info?: string;
-  className?: string;
-  noLabelMargin?: boolean;
-  children: React.ReactNode;
+  title: string
+  titleBarRight?: React.ReactNode
+  info?: string
+  className?: string
+  noLabelMargin?: boolean
+  children: React.ReactNode
 }) {
   return (
     <Panel className={twMerge("h-fit overflow-y-auto", props.className)}>
@@ -23,5 +23,5 @@ export function WidgetPanel(props: {
       </div>
       {props.children}
     </Panel>
-  );
+  )
 }
