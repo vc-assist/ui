@@ -22,27 +22,23 @@ export function notifyError(err: unknown) {
   }
 }
 
-function ErrorPage(
+export function ErrorPage(
   props: Partial<{
-    errorId: string
+    message: string
     description: string
-    shortVersion: string
-    longVersion: string
     children: React.ReactNode
   }>,
 ) {
-  const [isLongVersion, setIsLongVersion] = useState<boolean>(false)
-
   return (
     <div className="flex h-full">
       <Panel className="flex flex-col gap-3 m-auto max-w-[80%]">
         <Title order={2}>Uh oh!</Title>
         <Text>An error has occurred.</Text>
 
-        {props.errorId ? (
+        {props.message ? (
           <>
             <Text className="font-semibold">Message:</Text>
-            <Code block>{props.errorId}</Code>
+            <Code block>{props.message}</Code>
           </>
         ) : undefined}
 
@@ -53,18 +49,6 @@ function ErrorPage(
               {props.description}
             </Code>
           </>
-        ) : undefined}
-
-        {props.shortVersion ? (
-          <Text>
-            Version:{" "}
-            <Code
-              onMouseEnter={() => setIsLongVersion(true)}
-              onMouseLeave={() => setIsLongVersion(false)}
-            >
-              {isLongVersion ? props.longVersion : props.shortVersion}
-            </Code>
-          </Text>
         ) : undefined}
 
         {props.children}
@@ -97,7 +81,7 @@ export function ErrorBoundary({ children }: { children: React.ReactNode }) {
           })
 
           return (
-            <ErrorPage errorId={err.message} description={err.stack ?? ""} />
+            <ErrorPage message={err.message} description={err.stack ?? ""} />
           )
         }
 
@@ -107,7 +91,7 @@ export function ErrorBoundary({ children }: { children: React.ReactNode }) {
 
         return (
           <ErrorPage
-            errorId="Unknown error"
+            message="Unknown error"
             description="Something went wrong!"
           />
         )
