@@ -1,4 +1,8 @@
-## usage
+# ui
+
+> Shared UI components for VC Assist.
+
+## Usage
 
 ```tsx
 import "@mantine/core/styles.css";
@@ -16,7 +20,7 @@ ReactDOM.render(
 )
 ```
 
-### project structure
+## Project structure
 
 - `components/` - ui components (note: components are grouped together by *what they look like, what they look like they do, and heavily related components*)
 - `foundation/` - foundation for any web app (error boundary, telemetry, mantine providers/theme)
@@ -32,13 +36,13 @@ ReactDOM.render(
 - `.storybook/` - contains configuration for storybook
 - `stories/` - storybook stories
 
-### storybook
+## Storybook
 
-you can think of storybook akin to unit testing for UI. it allows you to define certain "stories", states in which UI components can be in, and preview those states in the browser. it also allows for visual testing, in which it will validate a screenshot of a rendered component against a previous "good" screenshot of the component and check if it has changed.
+You can think of storybook akin to unit testing for UI. it allows you to define certain "stories", states in which UI components can be in, and preview those states in the browser. it also allows for visual testing, in which it will validate a screenshot of a rendered component against a previous "good" screenshot of the component and check if it has changed.
 
-you can learn how to use the storybook straight from their documentation, you can also look at the existing `*.stories.tsx` files under `stories/` or `stories/example/` to get a feel for how to use storybook.
+You can learn how to use the storybook straight from their documentation, you can also look at the existing `*.stories.tsx` files under `stories/` or `stories/example/` to get a feel for how to use storybook.
 
-### commands
+## Commands
 
 - `pnpm run storybook` - runs storybook
 
