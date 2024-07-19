@@ -7,10 +7,6 @@ import { Notifications } from "@mantine/notifications"
 import { useEffect } from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
 
-function oppositeColor(color: "light" | "dark"): "light" | "dark" {
-  return color === "dark" ? "light" : "dark"
-}
-
 function WithMetaColor() {
   const colorScheme = useComputedColorScheme()
 
@@ -19,8 +15,11 @@ function WithMetaColor() {
     if (!html) {
       return
     }
-    html.classList.remove(oppositeColor(colorScheme))
-    html.classList.add(colorScheme)
+    if (colorScheme === "dark") {
+      html.classList.add("dark")
+      return
+    }
+    html.classList.remove("dark")
   }, [colorScheme])
 
   return (

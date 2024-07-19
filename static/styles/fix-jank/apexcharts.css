@@ -1,18 +1,18 @@
 .apexcharts-tooltip {
-  border-color: var(--bg-dimmed) !important;
-  background: var(--bg) !important;
+  border-color: rgb(var(--colors-bg-dimmed)) !important;
+  background: rgb(var(--colors-bg)) !important;
 }
 
 .apexcharts-tooltip-title, .apexcharts-menu, .apexcharts-xaxistooltip {
-  border-color: var(--bg-dimmed) !important;
-  color: var(--primary) !important;
-  background: var(--bg) !important;
+  border-color: rgb(var(--colors-bg-dimmed)) !important;
+  color: rgb(var(--colors-primary)) !important;
+  background: rgb(var(--colors-bg)) !important;
 }
 
 .apexcharts-tooltip-series-group {
-  color: var(--primary);
+  color: rgb(var(--colors-primary));
 }
 
 .apexcharts-gridline {
-  stroke: var(--bg-dimmed);
+  stroke: rgb(var(--colors-bg-dimmed));
 }
