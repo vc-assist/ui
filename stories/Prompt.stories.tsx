@@ -8,17 +8,6 @@ const meta: Meta<typeof Prompt> = {
   parameters: {
     layout: "fullscreen",
   },
-  decorators: [
-    (Story) => {
-      return (
-        <div className="flex">
-          <div className="m-auto">
-            <Story />
-          </div>
-        </div>
-      )
-    },
-  ],
 }
 
 export default meta

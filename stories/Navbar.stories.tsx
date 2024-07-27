@@ -9,17 +9,6 @@ const meta: Meta<typeof NavbarList> = {
   parameters: {
     layout: "fullscreen",
   },
-  decorators: [
-    (Story) => {
-      return (
-        <div className="flex">
-          <div className="m-auto">
-            <Story />
-          </div>
-        </div>
-      )
-    },
-  ],
 }
 
 export default meta

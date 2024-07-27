@@ -43,8 +43,8 @@ export type RingSection = {
  */
 export function RingProgressPicker(props: {
   className?: string
+  selectedId?: string
   sections: RingSection[]
-  value?: RingSection
   onChoose?: (segment: RingSection) => void
   disabled?: boolean
   formatters?: Partial<{
@@ -86,7 +86,7 @@ export function RingProgressPicker(props: {
           tooltip: props.formatters?.tooltip?.(s) ?? `${s.value.toFixed(1)}%`,
           className: twMerge(
             "transition-all duration-500 origin-center",
-            props.value?.id === s.id ? "scale-110" : "",
+            props.selectedId === s.id ? "scale-110" : "",
           ),
         }))}
         classNames={{ label: "font-bold text-center" }}
@@ -104,7 +104,7 @@ export function RingProgressPicker(props: {
             <UnstyledButton
               className="rounded-md flex gap-2 items-center transition-all disabled:cursor-default"
               disabled={
-                !disabled ? props.onChoose && props.value?.id === s.id : true
+                !disabled ? props.onChoose && props.selectedId === s.id : true
               }
               onClick={() => {
                 if (disabled) {
@@ -120,7 +120,7 @@ export function RingProgressPicker(props: {
               />
               <AnimatedUnderline
                 classNames={{ text: "text-sm flex-1" }}
-                hide={props.value?.id !== s.id}
+                hide={props.selectedId !== s.id}
               >
                 <s.label />
               </AnimatedUnderline>

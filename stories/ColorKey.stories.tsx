@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Panel } from "../components/panel/Panel"
+import { ColorKey } from "../components"
 
-const meta: Meta<typeof Panel> = {
-  title: "VC Assist/Panel",
-  component: Panel,
+const meta: Meta<typeof ColorKey> = {
+  title: "VC Assist/ColorKey",
+  component: ColorKey,
   parameters: {
     layout: "fullscreen",
   },
@@ -15,6 +15,8 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    children: <p>Lorem Ipsum + other words.</p>,
+    label: "Label",
+    color: "red",
+    size: 14,
   },
 }
