@@ -1,6 +1,5 @@
 import { Code, Text, Title } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
-import { useState } from "react"
 import { ErrorBoundary as ErrorBoundaryComponent } from "react-error-boundary"
 import { Panel } from "../components/panel/Panel"
 import { createFnSpanner } from "./telemetry"
@@ -12,14 +11,14 @@ export function notifyError(err: unknown) {
       autoClose: 3000,
       color: "red",
     })
-  } else {
-    notifications.show({
-      message: err instanceof Error ? err.message : String(err),
-      title: "Something went wrong!",
-      autoClose: 10000,
-      color: "red",
-    })
+    return
   }
+  notifications.show({
+    message: err instanceof Error ? err.message : String(err),
+    title: "Something went wrong!",
+    autoClose: 10000,
+    color: "red",
+  })
 }
 
 export function ErrorPage(
