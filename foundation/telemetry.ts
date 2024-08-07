@@ -89,7 +89,7 @@ export function initTelemetry(config: TelemetryConfig) {
         exporter: new OTLPMetricExporter({
           url: config.otlp.metricsHttpEndpoint,
         }),
-        exportIntervalMillis: 1000,
+        exportIntervalMillis: 5000,
       }),
     ],
   })
