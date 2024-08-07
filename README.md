@@ -5,6 +5,7 @@
 ## Usage
 
 ```tsx
+// main.tsx
 import "@mantine/core/styles.css";
 import "@vcassist/ui/styles.css"
 import { Foundation, SomeComponent } from "@vcassist/ui"
@@ -18,6 +19,20 @@ ReactDOM.render(
       ...
    </FoundationProvider>
 )
+```
+
+```js
+// tailwind.config.cjs
+module.exports = {
+  ...require("@vcassist/ui/tailwind.config.cjs"),
+  content: [
+    "ui/foundation/**/*.tsx",
+    "ui/components/**/*.tsx",
+    "ui/styles/**/*.css",
+     // + your own files that use tailwind classes here
+     // ...
+  ],
+}
 ```
 
 ## Project structure
