@@ -68,10 +68,10 @@ export function persistentSignal<T extends Zod.ZodTypeAny>({
   let stored: Zod.TypeOf<T> | undefined
   const storedData = localStorage.getItem(key)
   if (storedData) {
-    const result = schema.safeParse(parseAny(storedData))
-    if (result.success) {
+    try {
+      const result = schema.parse(parseAny(storedData))
       stored = result.data
-    }
+    } catch { }
   }
   const theme = signal<Zod.TypeOf<T>>(stored ?? defaultValue)
   effect(() => {
