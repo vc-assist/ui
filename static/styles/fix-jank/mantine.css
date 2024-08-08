@@ -6,7 +6,7 @@
 }
 
 .mantine-Timeline-itemBullet {
-  background: var(--colors-bg);
+  background: rgb(var(--colors-bg));
 }
 
 button {
