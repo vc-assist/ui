@@ -1,7 +1,8 @@
 import { useComputedColorScheme, useMantineColorScheme } from "@mantine/core"
 import { MdDarkMode, MdLightMode } from "react-icons/md"
+import { twMerge } from "tailwind-merge"
 
-export function ThemeToggle() {
+export function ThemeToggleButton() {
   const colorScheme = useComputedColorScheme()
   const { toggleColorScheme } = useMantineColorScheme()
 
@@ -10,10 +11,13 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="p-1 mt-auto w-fit fill-dimmed hover:text-primary"
+      className={twMerge(
+        "p-2 mt-auto w-fit text-dimmed hover:text-primary",
+        "transition-all rounded-full",
+      )}
       onClick={toggleColorScheme}
     >
-      <ButtonIcon />
+      <ButtonIcon className="size-6" />
     </button>
   )
 }
