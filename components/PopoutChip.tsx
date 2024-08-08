@@ -32,7 +32,7 @@ export function PopoutChip(props: {
           {props.children}
         </UnstyledButton>
       </Popover.Target>
-      <Popover.Dropdown className="rounded-xl" bg="var(--bg)">
+      <Popover.Dropdown className="rounded-xl" bg="var(--colors-bg)">
         {props.title !== undefined || props.icon !== undefined ? (
           <div className="flex gap-3 mb-4 items-center">
             {props.icon ? (

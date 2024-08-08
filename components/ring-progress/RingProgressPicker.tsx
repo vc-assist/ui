@@ -14,7 +14,7 @@ function AnimatedUnderline(props: {
     container?: string
     text?: string
   }>
-  hide?: boolean
+  show?: boolean
 }) {
   return (
     <div className={props.classNames?.container}>
@@ -22,7 +22,7 @@ function AnimatedUnderline(props: {
         className={twMerge(
           props.classNames?.text,
           "animated-underline",
-          !props.hide ? "animated-underline-active" : undefined,
+          props.show ? "animated-underline-active" : undefined,
         )}
       >
         {props.children}
@@ -72,7 +72,7 @@ export function RingProgressPicker(props: {
         thickness={12}
         rootColor="transparent"
         style={{
-          "--bg-dimmed": "transparent",
+          "--colors-bg-dimmed": "transparent",
         }}
         sections={props.sections.map((s) => ({
           color: s.color,
@@ -120,7 +120,7 @@ export function RingProgressPicker(props: {
               />
               <AnimatedUnderline
                 classNames={{ text: "text-sm flex-1" }}
-                hide={props.selectedId !== s.id}
+                show={props.selectedId === s.id}
               >
                 <s.label />
               </AnimatedUnderline>

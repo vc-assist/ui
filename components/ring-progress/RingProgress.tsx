@@ -10,7 +10,7 @@ export function RingProgress(props: RingProgressProps) {
   return (
     <MantineRingProgress
       {...props}
-      rootColor="var(--bg-dimmed)"
+      rootColor="var(--colors-bg-dimmed)"
       styles={{
         curve: {
           transform: "none",
