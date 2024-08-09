@@ -13,7 +13,7 @@ function serializeAny(value: unknown): string {
     case "object":
       return JSON.stringify(value)
     case "string":
-      return `"${value}"`
+      return `"${value}`
     case "symbol":
       return `s${value.description}`
     case "undefined":
@@ -32,7 +32,7 @@ function parseAny(value: string): unknown {
 
   switch (char) {
     case '"':
-      return value.slice(1, value.length - 1)
+      return value.slice(1, value.length)
     case "+":
       return true
     case "!":
@@ -67,11 +67,15 @@ export function persistentSignal<T extends Zod.ZodTypeAny>({
 }) {
   let stored: Zod.TypeOf<T> | undefined
   const storedData = localStorage.getItem(key)
+  console.log("STORED", storedData)
   if (storedData) {
     try {
-      const result = schema.parse(parseAny(storedData))
-      stored = result.data
-    } catch { }
+      const parsed = parseAny(storedData)
+      const result = schema.parse(parsed)
+      stored = result
+    } catch (err) {
+      console.warn("failed to parse existing data", err)
+    }
   }
   const theme = signal<Zod.TypeOf<T>>(stored ?? defaultValue)
   effect(() => {
