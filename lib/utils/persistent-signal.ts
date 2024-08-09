@@ -67,7 +67,6 @@ export function persistentSignal<T extends Zod.ZodTypeAny>({
 }) {
   let stored: Zod.TypeOf<T> | undefined
   const storedData = localStorage.getItem(key)
-  console.log("STORED", storedData)
   if (storedData) {
     try {
       const parsed = parseAny(storedData)
