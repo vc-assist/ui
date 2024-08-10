@@ -71,13 +71,6 @@ export function NavbarList(props: {
               />
             )
           })}
-          <NavButton
-            routeSelected={props.route === "/profile"}
-            icon={HiUser}
-            onClick={() => {
-              props.onNavigate("/profile")
-            }}
-          />
         </div>
       </Panel>
     )
