@@ -74,11 +74,9 @@ export namespace Color {
    */
   export async function fromImage(image: string): Promise<string | undefined> {
     const _color = await colorThief.getColorAsync(image)
-    // the library gets this type wrong!
-    const color = _color as unknown as string | undefined
-    if (!color) {
+    if (typeof _color !== "string") {
       return
     }
-    return color
+    return _color
   }
 }
