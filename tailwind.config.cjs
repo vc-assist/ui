@@ -34,8 +34,8 @@ module.exports = {
             "bg-dimmed": colors.gray[200],
 
             accent: colors.blue[600],
-          }
-        }
+          },
+        },
       },
       themes: [
         {
@@ -49,12 +49,12 @@ module.exports = {
 
               bg: colors.zinc[800],
               "bg-dimmed": colors.zinc[900],
-              
+
               accent: colors.blue[400],
-            }
-          }
-        }
-      ]
-    })
-  ]
+            },
+          },
+        },
+      ],
+    }),
+  ],
 }

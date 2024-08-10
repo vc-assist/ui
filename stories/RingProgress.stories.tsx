@@ -34,6 +34,6 @@ export const Default: Story = {
         color: "purple",
         value: 30,
       },
-    ]
+    ],
   },
 }

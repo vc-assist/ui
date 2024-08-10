@@ -1,6 +1,5 @@
 import { Title } from "@mantine/core"
 import type { IconType } from "react-icons"
-import { HiUser } from "react-icons/hi"
 import { twMerge } from "tailwind-merge"
 import { Panel } from "../panel/Panel"
 

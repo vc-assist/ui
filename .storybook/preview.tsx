@@ -1,10 +1,10 @@
 import "@mantine/core/styles.css"
-import "../static/styles/app.css";
-import "../static/styles/content.css";
-import "../static/styles/preflight.css";
-import "../static/styles/fix-jank/mantine.css";
-import "../static/styles/fix-jank/mobile.css";
-import "../static/styles/fix-jank/apexcharts.css";
+import "../static/styles/app.css"
+import "../static/styles/content.css"
+import "../static/styles/preflight.css"
+import "../static/styles/fix-jank/mantine.css"
+import "../static/styles/fix-jank/mobile.css"
+import "../static/styles/fix-jank/apexcharts.css"
 
 import type { Preview } from "@storybook/react"
 import { Foundation } from "../foundation"

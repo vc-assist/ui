@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    message: "This is a long informational tooltip about some edge case in some UI or some justification for some feature behavior."
+    message:
+      "This is a long informational tooltip about some edge case in some UI or some justification for some feature behavior.",
   },
 }

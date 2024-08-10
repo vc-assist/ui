@@ -28,6 +28,6 @@ export const WithPicture: Story = {
   args: {
     name: "Adam James",
     email: "adam.james@gmail.com",
-    picture: "/static/favicon.svg"
+    picture: "/static/favicon.svg",
   },
 }

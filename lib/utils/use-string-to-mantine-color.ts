@@ -21,4 +21,3 @@ export function useStringToMantineColor(text: string): string {
 
   return color
 }
-
