@@ -1,4 +1,4 @@
-import { ErrorPage, ErrorBoundary, notifyError } from "./error"
+import { ErrorBoundary, ErrorPage, notifyError } from "./error"
 import { type SafeArea, SafeAreaProvider, useSafeArea } from "./safe-area"
 import {
   type FnSpan,
@@ -15,13 +15,15 @@ export * from "./context"
 export {
   notifyError,
   useSpan,
-  useSafeArea,
   type FnSpan,
   createFnSpanner,
-  narrowError,
   createDefaultMeter,
-  ErrorPage,
+  narrowError,
 }
+
+export { useSafeArea, type SafeArea }
+
+export { ErrorPage }
 
 export function Foundation(options: {
   safeArea: SafeArea
