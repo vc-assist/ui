@@ -12,7 +12,7 @@ import {
 } from "./telemetry"
 import { UIProvider } from "./ui"
 export * from "./context"
-import { Signal } from "@preact/signals-react"
+import type { Signal } from "@preact/signals-react"
 
 export {
   notifyError,
