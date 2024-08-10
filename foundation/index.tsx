@@ -1,3 +1,4 @@
+import { useSignals } from "@preact/signals-react/runtime"
 import { ErrorBoundary, ErrorPage, notifyError } from "./error"
 import { type SafeArea, SafeAreaProvider, useSafeArea } from "./safe-area"
 import {
@@ -11,6 +12,7 @@ import {
 } from "./telemetry"
 import { UIProvider } from "./ui"
 export * from "./context"
+import { Signal } from "@preact/signals-react"
 
 export {
   notifyError,
@@ -26,17 +28,19 @@ export { useSafeArea, type SafeArea }
 export { ErrorPage }
 
 export function Foundation(options: {
-  safeArea: SafeArea
+  safeArea: Signal<SafeArea>
   telemetry?: TelemetryConfig
 }): React.FC<{ children: React.ReactNode }> {
   if (options.telemetry) {
     initTelemetry(options.telemetry)
   }
   return function FoundationProvider(props: { children: React.ReactNode }) {
+    useSignals()
+
     return (
       <UIProvider>
         <ErrorBoundary>
-          <SafeAreaProvider value={options.safeArea}>
+          <SafeAreaProvider value={options.safeArea.value}>
             {props.children}
           </SafeAreaProvider>
         </ErrorBoundary>
