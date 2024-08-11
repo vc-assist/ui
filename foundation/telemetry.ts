@@ -62,8 +62,14 @@ export type AfterErrorHook = ((err: unknown) => void) | undefined
 export type TelemetryConfig = {
   serviceName: string
   otlp: {
-    tracesHttpEndpoint: string
-    metricsHttpEndpoint: string
+    traces: {
+      httpEndpoint: string
+      headers?: Record<string, string>
+    }
+    metrics: {
+      httpEndpoint: string
+      headers?: Record<string, string>
+    }
   }
   afterError?: AfterErrorHook
 }
@@ -74,7 +80,8 @@ export function initTelemetry(config: TelemetryConfig) {
   })
 
   const traceExporter = new OTLPTraceExporter({
-    url: config.otlp.tracesHttpEndpoint,
+    url: config.otlp.traces.httpEndpoint,
+    headers: config.otlp.traces.headers,
   })
   const tracerProvider = new WebTracerProvider({
     resource: OTEL_RESOURCE,
@@ -87,7 +94,8 @@ export function initTelemetry(config: TelemetryConfig) {
     readers: [
       new PeriodicExportingMetricReader({
         exporter: new OTLPMetricExporter({
-          url: config.otlp.metricsHttpEndpoint,
+          url: config.otlp.metrics.httpEndpoint,
+          headers: config.otlp.metrics.headers,
         }),
         exportIntervalMillis: 5000,
       }),
