@@ -37,7 +37,9 @@ module.exports = {
 
 ## Project structure
 
-- `components/` - ui components (note: components are grouped together by *what they look like, what they look like they do, and heavily related components*)
+- `.storybook/` - contains configuration for storybook
+- `stories/` - storybook stories
+- `components/` - ui components
 - `foundation/` - foundation for any web app (error boundary, telemetry, mantine providers/theme)
 - `lib/` - libraries
    - `color/` - contains methods for producing and transforming color
@@ -47,9 +49,13 @@ module.exports = {
    - `fonts/` - static assets
    - `styles/` - css styling
    - `favicon.svg` - the vcassist favicon
-- `global.css` - global css styles
-- `.storybook/` - contains configuration for storybook
-- `stories/` - storybook stories
+- `styles.css` - global css styles
+- `index.ts` - the entrypoint to the library, you should be able to import anything that is meant to be imported by importing this file.
+
+## Commands
+
+- `pnpm lint` - lints using biome and tsc
+- `pnpm storybook` - runs storybook
 
 ## Storybook
 
@@ -57,7 +63,17 @@ You can think of storybook akin to unit testing for UI. it allows you to define 
 
 You can learn how to use the storybook straight from their documentation, you can also look at the existing `*.stories.tsx` files under `stories/` or `stories/example/` to get a feel for how to use storybook.
 
-## Commands
+## Naming conventions
 
-- `pnpm run storybook` - runs storybook
+You may notice that all components that look or function like a button have the prefix "Button" at the end of their names. (ex. `ArrowButton.tsx`, `IconButton.tsx`)
+
+Similarly, all components that use the `Panel` component have the suffix "Panel" at the end of their names. (ex. `AlertPanel.tsx`)
+
+The naming convention could then be described as following.
+
+> Group components together by the most significant feature of commonality between them.
+>
+> But if components don't necessarily have any significant commonalities, do not force them together, keep them separate.
+
+It doesn't matter if this is functionality, visuals, or whatever, the most significant similarity between two components should be used as the grouping suffix of the component (or no suffix should be used if it is a standalone component).
 
