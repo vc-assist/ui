@@ -11,9 +11,11 @@ import {
   useSpan,
 } from "./telemetry"
 import { UIProvider } from "./ui"
-export * from "./context"
 import type { Signal } from "@preact/signals-react"
 
+export * from "./context"
+export * from "./credential-flow"
+export * from "./auth-flow"
 export {
   notifyError,
   useSpan,
@@ -22,9 +24,7 @@ export {
   createDefaultMeter,
   narrowError,
 }
-
 export { useSafeArea, type SafeArea }
-
 export { ErrorPage }
 
 export function Foundation(options: {
