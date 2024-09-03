@@ -200,7 +200,7 @@ export function CredentialCarousel(props: {
   )
 }
 
-export function ProvideCredentialsPage(props: {
+export function CredentialFlow(props: {
   profile: UserProfile
   getCredentialStatuses(): Promise<CredentialStatus[]>
   onComplete: (credentials: CredentialStatus[]) => void
