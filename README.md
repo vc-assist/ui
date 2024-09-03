@@ -8,6 +8,7 @@
 // main.tsx
 import "@mantine/core/styles.css";
 import "@vcassist/ui/styles.css"
+import "@mantine/carousel/styles.css"
 import { Foundation, SomeComponent } from "@vcassist/ui"
 
 const FoundationProvider = Foundation({
