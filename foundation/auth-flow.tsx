@@ -5,14 +5,14 @@ import { Panel } from "../components/panel"
 import { useEffect, useRef, useState } from "react"
 import type { UserProfile } from "../components"
 
-export enum State {
+export enum AuthState {
   WAITING_FOR_EMAIL = 0,
   WAITING_FOR_CODE = 1,
 }
 
 export function AuthFlow(props: {
   token?: string
-  state?: State
+  state?: AuthState
 
   startLogin(email: string): Promise<void>
   consumeVerificationCode(email: string, code: string): Promise<{ token: string }>
@@ -23,7 +23,7 @@ export function AuthFlow(props: {
 }) {
   const tokenRef = useRef(props.token)
   const emailRef = useRef("")
-  const [state, setState] = useState(props.state ?? State.WAITING_FOR_EMAIL)
+  const [state, setState] = useState(props.state ?? AuthState.WAITING_FOR_EMAIL)
 
   const consumeVerificationCode = async (code: string, email: string) => {
     const tokenRes = await props.consumeVerificationCode(code, email)
@@ -53,17 +53,17 @@ export function AuthFlow(props: {
   return (
     <div className="flex h-full">
       <Panel className="m-auto">
-        {state === State.WAITING_FOR_EMAIL ? (
+        {state === AuthState.WAITING_FOR_EMAIL ? (
           <EmailPrompt
             onSubmit={async (email: string) => {
               await props.startLogin(email)
               emailRef.current = email
-              setState(State.WAITING_FOR_CODE)
+              setState(AuthState.WAITING_FOR_CODE)
             }}
           />
         ) : undefined}
 
-        {state === State.WAITING_FOR_CODE ? (
+        {state === AuthState.WAITING_FOR_CODE ? (
           <CodePrompt
             onSubmit={async (code: string) => {
               const res = await consumeVerificationCode(code, emailRef.current)
