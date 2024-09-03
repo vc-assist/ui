@@ -25,8 +25,8 @@ export function AuthFlow(props: {
   const emailRef = useRef("")
   const [state, setState] = useState(props.state ?? AuthState.WAITING_FOR_EMAIL)
 
-  const consumeVerificationCode = async (code: string, email: string) => {
-    const tokenRes = await props.consumeVerificationCode(code, email)
+  const consumeVerificationCode = async (email: string, code: string) => {
+    const tokenRes = await props.consumeVerificationCode(email, code)
     const res = await props.verifyToken(tokenRes.token)
     return {
       token: tokenRes.token,
@@ -66,7 +66,7 @@ export function AuthFlow(props: {
         {state === AuthState.WAITING_FOR_CODE ? (
           <CodePrompt
             onSubmit={async (code: string) => {
-              const res = await consumeVerificationCode(code, emailRef.current)
+              const res = await consumeVerificationCode(emailRef.current, code)
               props.onLogin(res.token, res.profile)
             }}
           />
