@@ -12,7 +12,7 @@ import { ErrorPage } from "./error"
 import { useImageToColor, useStringToMantineColor } from "../lib"
 import type { UserProfile } from "../components"
 
-type CredentialStatus = {
+export type CredentialState = {
   name: string
   picture?: string
   provided: boolean
@@ -34,7 +34,7 @@ type CredentialStatus = {
 function CredentialForm(props: {
   className?: string
   profile: UserProfile
-  status: CredentialStatus
+  status: CredentialState
   onSuccess(): void
 }) {
   const pictureColor = useImageToColor(props.status.picture ?? "")
@@ -135,7 +135,7 @@ function CredentialForm(props: {
 export function CredentialCarousel(props: {
   className?: string
   profile: UserProfile
-  credentials: CredentialStatus[]
+  credentials: CredentialState[]
   onComplete: () => void
 }) {
   const [credentials, setCredentials] = useState(props.credentials)
@@ -202,8 +202,8 @@ export function CredentialCarousel(props: {
 
 export function CredentialFlow(props: {
   profile: UserProfile
-  getCredentialStatuses(): Promise<CredentialStatus[]>
-  onComplete: (credentials: CredentialStatus[]) => void
+  getCredentialStatuses(): Promise<CredentialState[]>
+  onComplete: (credentials: CredentialState[]) => void
 }) {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["ProvideCredentialsPage", "getCredentialStatuses"],
