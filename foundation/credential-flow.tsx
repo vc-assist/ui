@@ -203,7 +203,7 @@ export function CredentialCarousel(props: {
 export function CredentialFlow(props: {
   profile: UserProfile
   getCredentialStatuses(): Promise<CredentialState[]>
-  onComplete: (credentials: CredentialState[]) => void
+  onComplete: () => void
 }) {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["ProvideCredentialsPage", "getCredentialStatuses"],
@@ -215,7 +215,7 @@ export function CredentialFlow(props: {
     if (!data || !completed) {
       return
     }
-    props.onComplete(data)
+    props.onComplete()
   }, [completed, data, props.onComplete])
 
   if (isPending) {
