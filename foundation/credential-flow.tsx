@@ -201,12 +201,13 @@ export function CredentialCarousel(props: {
 }
 
 export function CredentialFlow(props: {
+  queryKey?: unknown[],
   profile: UserProfile
   getCredentialStatuses(): Promise<CredentialState[]>
   onComplete: () => void
 }) {
   const { isPending, error, data, refetch } = useQuery({
-    queryKey: ["ProvideCredentialsPage", "getCredentialStatuses"],
+    queryKey: props.queryKey ?? ["getCredentialStatuses", props.profile.email],
     queryFn: props.getCredentialStatuses,
   })
 
