@@ -13,7 +13,7 @@ export function ThemeToggleButton() {
       type="button"
       className={twMerge(
         "mt-auto w-fit text-dimmed hover:text-primary",
-        "transition-all rounded-full",
+        "transition-all rounded-full p-0",
       )}
       onClick={toggleColorScheme}
     >
