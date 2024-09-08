@@ -233,7 +233,7 @@ export function CredentialFlow(props: {
 
   return (
     <CredentialCarousel
-      className={twMerge("transition-all", completed ? "blur-sm" : "")}
+      className="transition-all"
       profile={props.profile}
       credentials={data}
       onComplete={() => {
