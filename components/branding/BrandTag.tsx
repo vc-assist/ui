@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge"
+import { Favicon } from "./Favicon"
 
 export function BrandTag(props: { className?: string }) {
   return (
@@ -6,13 +7,7 @@ export function BrandTag(props: { className?: string }) {
       className={twMerge("flex items-end w-fit h-fit", props.className)}
       style={{ gap: "0.375rem" }}
     >
-      <img
-        alt="logo"
-        src="/favicon.svg"
-        width="24"
-        height="24"
-        className="d-inline-block"
-      />
+      <Favicon className="w-[24px] h-[24px] d-inline-block" />
       <p className="font-semibold">VC Assist</p>
     </div>
   )
