@@ -1,11 +1,7 @@
 {
-  "dependencyTypes": ["prod", "dev"],
   "semverGroups": [
     {
       "label": "Use exact version numbers.",
-      "packages": ["**"],
-      "dependencyTypes": ["prod", "dev"],
-      "dependencies": ["**"],
       "range": ""
     }
   ]
