@@ -57,6 +57,7 @@ module.exports = {
 
 - `pnpm lint` - lints using biome and tsc
 - `pnpm storybook` - runs storybook
+- `pnpm syncpack fix-mismatches` - makes all dependencies an exact version (this is so you don't get weird errors when if you have a library with some kind of global, using a different version of the library will resolve in a different global), *you should run this after adding any dependency*
 
 ## Storybook
 
