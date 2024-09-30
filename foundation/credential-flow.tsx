@@ -2,13 +2,11 @@ import "@mantine/carousel/styles.css"
 
 import { Carousel, type Embla } from "@mantine/carousel"
 import { Avatar, Button, Title, rem } from "@mantine/core"
-import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { MdArrowBack, MdArrowForward, MdEdit } from "react-icons/md"
 import { twMerge } from "tailwind-merge"
 import { OAuthForm, UsernamePasswordForm } from "./credential-forms"
 import { BrandTag, Panel, UserAvatar } from "../components"
-import { ErrorPage } from "./error"
 import { useImageToColor, useStringToMantineColor } from "../lib"
 import type { UserProfile } from "../components"
 
@@ -200,45 +198,3 @@ export function CredentialCarousel(props: {
   )
 }
 
-export function CredentialFlow(props: {
-  queryKey?: unknown[],
-  profile: UserProfile
-  getCredentialStatuses(): Promise<CredentialState[]>
-  onComplete: () => void
-}) {
-  const { isPending, error, data, refetch } = useQuery({
-    queryKey: props.queryKey ?? ["getCredentialStatuses", props.profile.email],
-    queryFn: props.getCredentialStatuses,
-  })
-
-  const completed = data?.every((c) => c.provided)
-  useEffect(() => {
-    if (!data || !completed) {
-      return
-    }
-    props.onComplete()
-  }, [completed, data, props.onComplete])
-
-  if (isPending) {
-    return
-  }
-  if (error) {
-    return (
-      <ErrorPage
-        message="Failed to fetch student credential status."
-        description={error.message}
-      />
-    )
-  }
-
-  return (
-    <CredentialCarousel
-      className="transition-all"
-      profile={props.profile}
-      credentials={data}
-      onComplete={() => {
-        refetch()
-      }}
-    />
-  )
-}
