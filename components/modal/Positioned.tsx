@@ -8,7 +8,7 @@ export function Positioned(props: {
   className?: string
   children: React.ReactNode
 }) {
-  const safeArea = useSafeArea()
+  const safeArea = useSafeArea((area) => area.insets)
 
   const padding = props.padding ?? "1rem"
   const style: Partial<React.CSSProperties> = {}

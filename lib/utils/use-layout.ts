@@ -1,9 +1,6 @@
 import { useMediaQuery } from "@mantine/hooks"
-import { z } from "zod"
 
-export const macroLayouts = z.enum(["desktop", "mobile"])
-
-export type MacroLayouts = z.TypeOf<typeof macroLayouts>
+export type MacroLayouts = "mobile" | "desktop"
 
 /**
  * Uses a media query to keep track of layout changes, accepts an

@@ -4,7 +4,6 @@ import {
   ThemeIcon,
   UnstyledButton,
 } from "@mantine/core"
-import { useSignals } from "@preact/signals-react/runtime"
 import { useMemo } from "react"
 import {
   MdClose,
@@ -13,9 +12,9 @@ import {
   MdTipsAndUpdates,
 } from "react-icons/md"
 import { twMerge } from "tailwind-merge"
-import { z } from "zod"
-import { persistentSignal } from "../../lib/utils"
 import { Panel } from "./Panel"
+import { create } from "zustand"
+import { persist } from "zustand/middleware"
 
 export enum AlertVariant {
   STATIC = 0,
@@ -35,22 +34,23 @@ export function AlertPanel(props: {
   children?: React.ReactNode
   variant?: AlertVariant
 }) {
-  useSignals()
-
   const variant = props.variant ?? AlertVariant.STATIC
 
   const closed = useMemo(
-    () =>
-      persistentSignal({
-        key: `alert-${props.id}`,
-        schema: z.coerce.boolean(),
-        defaultValue: false,
+    () => create<{ isClosed: boolean, setClosed(value: boolean): void }>()(persist(
+      (set) => ({
+        isClosed: false,
+        setClosed(value) {
+          set({ isClosed: value })
+        }
       }),
+      { name: `alert-panel.${props.id}` }
+    ))((value) => value),
     [props.id],
   )
   const color = props.color ?? "violet"
 
-  if (closed.value && variant === AlertVariant.DISMISSIBLE) {
+  if (closed.isClosed && variant === AlertVariant.DISMISSIBLE) {
     return null
   }
 
@@ -72,12 +72,12 @@ export function AlertPanel(props: {
             {props.title}
           </Text>
         ) : undefined}
-        {variant === AlertVariant.EXPANDABLE && closed.value
+        {variant === AlertVariant.EXPANDABLE && closed.isClosed
           ? undefined
           : props.children}
       </div>
       {variant === AlertVariant.DISMISSIBLE ||
-      variant === AlertVariant.EXPANDABLE ? (
+        variant === AlertVariant.EXPANDABLE ? (
         <div>
           <UnstyledButton
             className={twMerge(
@@ -87,17 +87,17 @@ export function AlertPanel(props: {
             onClick={() => {
               switch (variant) {
                 case AlertVariant.DISMISSIBLE:
-                  closed.value = true
+                  closed.setClosed(true)
                   break
                 case AlertVariant.EXPANDABLE:
-                  closed.value = !closed.value
+                  closed.setClosed(!closed.isClosed)
                   break
               }
             }}
           >
             {variant === AlertVariant.DISMISSIBLE ? (
               <MdClose size={18} />
-            ) : closed.value ? (
+            ) : closed.isClosed ? (
               <MdKeyboardArrowUp size={18} />
             ) : (
               <MdKeyboardArrowDown size={18} />

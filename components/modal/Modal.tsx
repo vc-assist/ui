@@ -13,7 +13,7 @@ export function Modal(props: {
   onClose(): void
 }) {
   const closeControls = props.closeControls ?? true
-  const safeArea = useSafeArea()
+  const safeArea = useSafeArea((area) => area.insets)
 
   const closeHandler = () => {
     if (!closeControls) {
