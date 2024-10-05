@@ -178,8 +178,14 @@ export function CredentialCarousel(props: {
               className="m-auto hover:cursor-auto"
               profile={props.profile}
               onSuccess={() => {
-                credentials[i].provided = true
-                setCredentials([...credentials])
+                setCredentials([
+                  ...credentials.slice(0, i),
+                  {
+                    ...credentials[i],
+                    provided: true,
+                  },
+                  ...credentials.slice(i + 1)
+                ])
 
                 if (!embla) {
                   return
