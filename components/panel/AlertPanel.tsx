@@ -37,7 +37,7 @@ export function AlertPanel(props: {
   const variant = props.variant ?? AlertVariant.STATIC
 
   const closed = useMemo(
-    () => create<{ isClosed: boolean, setClosed(value: boolean): void }>()(persist(
+    () => create(persist<{ isClosed: boolean, setClosed(value: boolean): void }>(
       (set) => ({
         isClosed: false,
         setClosed(value) {
