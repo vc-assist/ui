@@ -1,9 +1,9 @@
 import { Button, TextInput, Title } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { useMutation } from "@tanstack/react-query"
-import { Panel } from "../components/panel"
 import { useEffect, useRef, useState } from "react"
 import type { UserProfile } from "../components"
+import { Panel } from "../components/panel"
 
 export enum AuthState {
   WAITING_FOR_EMAIL = 0,
@@ -15,7 +15,10 @@ export function AuthFlow(props: {
   state?: AuthState
 
   startLogin(email: string): Promise<void>
-  consumeVerificationCode(email: string, code: string): Promise<{ token: string }>
+  consumeVerificationCode(
+    email: string,
+    code: string,
+  ): Promise<{ token: string }>
   verifyToken(token: string): Promise<{ email: string }>
 
   onLogin(token: string, profile: UserProfile): void
@@ -38,7 +41,8 @@ export function AuthFlow(props: {
     if (!tokenRef.current) {
       return
     }
-    props.verifyToken(tokenRef.current)
+    props
+      .verifyToken(tokenRef.current)
       .then((res) => props.onLogin(tokenRef.current!, res))
       .catch(() => {
         tokenRef.current = undefined
@@ -68,6 +72,9 @@ export function AuthFlow(props: {
             onSubmit={async (code: string) => {
               const res = await consumeVerificationCode(emailRef.current, code)
               props.onLogin(res.token, res.profile)
+            }}
+            onBack={() => {
+              setState(AuthState.WAITING_FOR_EMAIL)
             }}
           />
         ) : undefined}
@@ -120,7 +127,10 @@ function EmailPrompt(props: { onSubmit: (email: string) => Promise<void> }) {
   )
 }
 
-function CodePrompt(props: { onSubmit: (code: string) => Promise<void> }) {
+function CodePrompt(props: {
+  onSubmit: (code: string) => Promise<void>
+  onBack: () => void
+}) {
   const form = useForm({
     initialValues: {
       code: "",
@@ -156,10 +166,14 @@ function CodePrompt(props: { onSubmit: (code: string) => Promise<void> }) {
           }
         }}
       />
-
-      <Button className="" onClick={submit} loading={submitMutation.isPending}>
-        Submit
-      </Button>
+      <div className="flex w-full justify-evenly space-x-3">
+        <Button onClick={props.onBack} loading={submitMutation.isPending}>
+          Back
+        </Button>
+        <Button onClick={submit} loading={submitMutation.isPending}>
+          Submit
+        </Button>
+      </div>
 
       {submitMutation.error ? (
         <p className="text-red-700 font-normal max-w-[240px]">
